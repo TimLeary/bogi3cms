@@ -23,3 +23,304 @@ REQUEST_URI=/bogi3cms/
 in /var/www/bogi3cms/protected/views/layouts/main.php (51)
 in /var/www/bogi3cms/protected/views/layouts/column1.php (6)
 in /var/www/bogi3cms/protected/controllers/SiteController.php (32)
+2014/01/19 17:08:12 [error] [exception.CException] exception 'CException' with message 'A tulajdonság "LoginForm.username" nincs definiálva.' in /var/www/yii/framework/base/CComponent.php:130
+Stack trace:
+#0 /var/www/yii/framework/web/helpers/CHtml.php(2529): CComponent->__get('username')
+#1 /var/www/yii/framework/web/helpers/CHtml.php(2252): CHtml::resolveValue(Object(LoginForm), 'username')
+#2 /var/www/yii/framework/web/helpers/CHtml.php(1434): CHtml::activeInputField('text', Object(LoginForm), 'username', Array)
+#3 /var/www/yii/framework/web/widgets/CActiveForm.php(725): CHtml::activeTextField(Object(LoginForm), 'username', Array)
+#4 /var/www/bogi3cms/protected/views/site/login.php(29): CActiveForm->textField(Object(LoginForm), 'username')
+#5 /var/www/yii/framework/web/CBaseController.php(126): require('/var/www/bogi3c...')
+#6 /var/www/yii/framework/web/CBaseController.php(95): CBaseController->renderInternal('/var/www/bogi3c...', Array, true)
+#7 /var/www/yii/framework/web/CController.php(869): CBaseController->renderFile('/var/www/bogi3c...', Array, true)
+#8 /var/www/yii/framework/web/CController.php(782): CController->renderPartial('login', Array, true)
+#9 /var/www/bogi3cms/protected/controllers/SiteController.php(98): CController->render('login', Array)
+#10 /var/www/yii/framework/web/actions/CInlineAction.php(49): SiteController->actionLogin()
+#11 /var/www/yii/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#12 /var/www/yii/framework/web/CController.php(286): CController->runAction(Object(CInlineAction))
+#13 /var/www/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#14 /var/www/yii/framework/web/CWebApplication.php(282): CController->run('login')
+#15 /var/www/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('site/login')
+#16 /var/www/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#17 /var/www/bogi3cms/index.php(14): CApplication->run()
+#18 {main}
+REQUEST_URI=/bogi3cms/index.php?r=site/login
+HTTP_REFERER=http://localhost/bogi3cms/index.php?r=articleCrud
+---
+2014/01/19 17:09:32 [error] [exception.CException] exception 'CException' with message 'A tulajdonság "LoginForm.username" nincs definiálva.' in /var/www/yii/framework/base/CComponent.php:130
+Stack trace:
+#0 /var/www/yii/framework/web/helpers/CHtml.php(2529): CComponent->__get('username')
+#1 /var/www/yii/framework/web/helpers/CHtml.php(2252): CHtml::resolveValue(Object(LoginForm), 'username')
+#2 /var/www/yii/framework/web/helpers/CHtml.php(1434): CHtml::activeInputField('text', Object(LoginForm), 'username', Array)
+#3 /var/www/yii/framework/web/widgets/CActiveForm.php(725): CHtml::activeTextField(Object(LoginForm), 'username', Array)
+#4 /var/www/bogi3cms/protected/views/site/login.php(29): CActiveForm->textField(Object(LoginForm), 'username')
+#5 /var/www/yii/framework/web/CBaseController.php(126): require('/var/www/bogi3c...')
+#6 /var/www/yii/framework/web/CBaseController.php(95): CBaseController->renderInternal('/var/www/bogi3c...', Array, true)
+#7 /var/www/yii/framework/web/CController.php(869): CBaseController->renderFile('/var/www/bogi3c...', Array, true)
+#8 /var/www/yii/framework/web/CController.php(782): CController->renderPartial('login', Array, true)
+#9 /var/www/bogi3cms/protected/controllers/SiteController.php(98): CController->render('login', Array)
+#10 /var/www/yii/framework/web/actions/CInlineAction.php(49): SiteController->actionLogin()
+#11 /var/www/yii/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#12 /var/www/yii/framework/web/CController.php(286): CController->runAction(Object(CInlineAction))
+#13 /var/www/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#14 /var/www/yii/framework/web/CWebApplication.php(282): CController->run('login')
+#15 /var/www/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('site/login')
+#16 /var/www/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#17 /var/www/bogi3cms/index.php(14): CApplication->run()
+#18 {main}
+REQUEST_URI=/bogi3cms/index.php?r=site/login
+---
+2014/01/19 17:50:34 [error] [exception.CException] exception 'CException' with message 'A tulajdonság "Article.permalink" nincs definiálva.' in /var/www/yii/framework/base/CComponent.php:130
+Stack trace:
+#0 /var/www/yii/framework/db/ar/CActiveRecord.php(145): CComponent->__get('permalink')
+#1 /var/www/yii/framework/web/helpers/CHtml.php(2529): CActiveRecord->__get('permalink')
+#2 /var/www/yii/framework/web/helpers/CHtml.php(2252): CHtml::resolveValue(Object(Article), 'permalink')
+#3 /var/www/yii/framework/web/helpers/CHtml.php(1434): CHtml::activeInputField('text', Object(Article), 'permalink', Array)
+#4 /var/www/yii/framework/web/widgets/CActiveForm.php(725): CHtml::activeTextField(Object(Article), 'permalink', Array)
+#5 /var/www/bogi3cms/protected/views/articleCrud/_form.php(60): CActiveForm->textField(Object(Article), 'permalink', Array)
+#6 /var/www/yii/framework/web/CBaseController.php(126): require('/var/www/bogi3c...')
+#7 /var/www/yii/framework/web/CBaseController.php(95): CBaseController->renderInternal('/var/www/bogi3c...', Array, true)
+#8 /var/www/yii/framework/web/CController.php(869): CBaseController->renderFile('/var/www/bogi3c...', Array, true)
+#9 /var/www/bogi3cms/protected/views/articleCrud/create.php(18): CController->renderPartial('_form', Array)
+#10 /var/www/yii/framework/web/CBaseController.php(126): require('/var/www/bogi3c...')
+#11 /var/www/yii/framework/web/CBaseController.php(95): CBaseController->renderInternal('/var/www/bogi3c...', Array, true)
+#12 /var/www/yii/framework/web/CController.php(869): CBaseController->renderFile('/var/www/bogi3c...', Array, true)
+#13 /var/www/yii/framework/web/CController.php(782): CController->renderPartial('create', Array, true)
+#14 /var/www/bogi3cms/protected/controllers/ArticleCrudController.php(79): CController->render('create', Array)
+#15 /var/www/yii/framework/web/actions/CInlineAction.php(49): ArticleCrudController->actionCreate()
+#16 /var/www/yii/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#17 /var/www/yii/framework/web/filters/CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#18 /var/www/yii/framework/web/CController.php(291): CFilterChain->run()
+#19 /var/www/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#20 /var/www/yii/framework/web/CWebApplication.php(282): CController->run('create')
+#21 /var/www/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('articleCrud/cre...')
+#22 /var/www/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#23 /var/www/bogi3cms/index.php(14): CApplication->run()
+#24 {main}
+REQUEST_URI=/bogi3cms/index.php?r=articleCrud/create
+HTTP_REFERER=http://localhost/bogi3cms/index.php?r=articleCrud
+---
+2014/01/19 17:52:51 [error] [exception.CException] exception 'CException' with message 'CWebUser and its behaviors do not have a method or closure named "isAdmin".' in /var/www/yii/framework/base/CComponent.php:266
+Stack trace:
+#0 /var/www/yii/framework/base/CComponent.php(612) : eval()'d code(1): CComponent->__call('isAdmin', Array)
+#1 /var/www/yii/framework/base/CComponent.php(612) : eval()'d code(1): CWebUser->isAdmin()
+#2 /var/www/yii/framework/base/CComponent.php(612): eval()
+#3 /var/www/yii/framework/web/auth/CAccessControlFilter.php(392): CComponent->evaluateExpression('Yii::app()->use...', Array)
+#4 /var/www/yii/framework/web/auth/CAccessControlFilter.php(288): CAccessRule->isExpressionMatched(Object(CWebUser))
+#5 /var/www/yii/framework/web/auth/CAccessControlFilter.php(138): CAccessRule->isUserAllowed(Object(CWebUser), Object(ArticleController), Object(CInlineAction), '127.0.0.1', 'GET')
+#6 /var/www/yii/framework/web/filters/CFilter.php(38): CAccessControlFilter->preFilter(Object(CFilterChain))
+#7 /var/www/yii/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#8 /var/www/yii/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#9 /var/www/yii/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#10 /var/www/yii/framework/web/CController.php(291): CFilterChain->run()
+#11 /var/www/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#12 /var/www/yii/framework/web/CWebApplication.php(282): CController->run('')
+#13 /var/www/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('article')
+#14 /var/www/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#15 /var/www/bogi3cms/index.php(14): CApplication->run()
+#16 {main}
+REQUEST_URI=/bogi3cms/index.php?r=article
+---
+2014/01/19 17:55:00 [error] [exception.CException] exception 'CException' with message 'A tulajdonság "LoginForm.username" nincs definiálva.' in /var/www/yii/framework/base/CComponent.php:130
+Stack trace:
+#0 /var/www/yii/framework/web/helpers/CHtml.php(2529): CComponent->__get('username')
+#1 /var/www/yii/framework/web/helpers/CHtml.php(2252): CHtml::resolveValue(Object(LoginForm), 'username')
+#2 /var/www/yii/framework/web/helpers/CHtml.php(1434): CHtml::activeInputField('text', Object(LoginForm), 'username', Array)
+#3 /var/www/yii/framework/web/widgets/CActiveForm.php(725): CHtml::activeTextField(Object(LoginForm), 'username', Array)
+#4 /var/www/bogi3cms/protected/views/site/login.php(29): CActiveForm->textField(Object(LoginForm), 'username')
+#5 /var/www/yii/framework/web/CBaseController.php(126): require('/var/www/bogi3c...')
+#6 /var/www/yii/framework/web/CBaseController.php(95): CBaseController->renderInternal('/var/www/bogi3c...', Array, true)
+#7 /var/www/yii/framework/web/CController.php(869): CBaseController->renderFile('/var/www/bogi3c...', Array, true)
+#8 /var/www/yii/framework/web/CController.php(782): CController->renderPartial('login', Array, true)
+#9 /var/www/bogi3cms/protected/controllers/SiteController.php(98): CController->render('login', Array)
+#10 /var/www/yii/framework/web/actions/CInlineAction.php(49): SiteController->actionLogin()
+#11 /var/www/yii/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#12 /var/www/yii/framework/web/CController.php(286): CController->runAction(Object(CInlineAction))
+#13 /var/www/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#14 /var/www/yii/framework/web/CWebApplication.php(282): CController->run('login')
+#15 /var/www/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('site/login')
+#16 /var/www/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#17 /var/www/bogi3cms/index.php(14): CApplication->run()
+#18 {main}
+REQUEST_URI=/bogi3cms/index.php?r=site/login
+---
+2014/01/19 18:01:14 [error] [php] include(Gift.php): failed to open stream: No such file or directory (/var/www/yii/framework/YiiBase.php:427)
+Stack trace:
+#0 /var/www/bogi3cms/protected/controllers/MediumController.php(71): spl_autoload_call()
+#1 /var/www/yii/framework/web/actions/CInlineAction.php(49): MediumController->actionImageUploader()
+#2 /var/www/yii/framework/web/CController.php(308): CInlineAction->runWithParams()
+#3 /var/www/yii/framework/web/filters/CFilterChain.php(133): MediumController->runAction()
+#4 /var/www/yii/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#5 /var/www/yii/framework/web/CController.php(1145): CAccessControlFilter->filter()
+#6 /var/www/yii/framework/web/filters/CInlineFilter.php(58): MediumController->filterAccessControl()
+#7 /var/www/yii/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter()
+#8 /var/www/yii/framework/web/CController.php(291): CFilterChain->run()
+#9 /var/www/yii/framework/web/CController.php(265): MediumController->runActionWithFilters()
+#10 /var/www/yii/framework/web/CWebApplication.php(282): MediumController->run()
+#11 /var/www/yii/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#12 /var/www/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#13 /var/www/bogi3cms/index.php(14): CWebApplication->run()
+REQUEST_URI=/bogi3cms/index.php?r=medium/imageUploader&areaId=&objectId=
+in /var/www/bogi3cms/protected/controllers/MediumController.php (71)
+in /var/www/bogi3cms/index.php (14)
+2014/01/19 19:11:44 [error] [php] include(Gift.php): failed to open stream: No such file or directory (/var/www/yii/framework/YiiBase.php:427)
+Stack trace:
+#0 /var/www/bogi3cms/protected/controllers/MediumController.php(71): spl_autoload_call()
+#1 /var/www/yii/framework/web/actions/CInlineAction.php(49): MediumController->actionImageUploader()
+#2 /var/www/yii/framework/web/CController.php(308): CInlineAction->runWithParams()
+#3 /var/www/yii/framework/web/filters/CFilterChain.php(133): MediumController->runAction()
+#4 /var/www/yii/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#5 /var/www/yii/framework/web/CController.php(1145): CAccessControlFilter->filter()
+#6 /var/www/yii/framework/web/filters/CInlineFilter.php(58): MediumController->filterAccessControl()
+#7 /var/www/yii/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter()
+#8 /var/www/yii/framework/web/CController.php(291): CFilterChain->run()
+#9 /var/www/yii/framework/web/CController.php(265): MediumController->runActionWithFilters()
+#10 /var/www/yii/framework/web/CWebApplication.php(282): MediumController->run()
+#11 /var/www/yii/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#12 /var/www/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#13 /var/www/bogi3cms/index.php(14): CWebApplication->run()
+REQUEST_URI=/bogi3cms/index.php/medium/imageUploader?areaId=&objectId=1
+in /var/www/bogi3cms/protected/controllers/MediumController.php (71)
+in /var/www/bogi3cms/index.php (14)
+2014/01/20 08:50:57 [error] [php] include(Gift.php): failed to open stream: No such file or directory (/var/www/yii/framework/YiiBase.php:427)
+Stack trace:
+#0 /var/www/bogi3cms/protected/controllers/MediumController.php(71): spl_autoload_call()
+#1 /var/www/yii/framework/web/actions/CInlineAction.php(49): MediumController->actionImageUploader()
+#2 /var/www/yii/framework/web/CController.php(308): CInlineAction->runWithParams()
+#3 /var/www/yii/framework/web/filters/CFilterChain.php(133): MediumController->runAction()
+#4 /var/www/yii/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#5 /var/www/yii/framework/web/CController.php(1145): CAccessControlFilter->filter()
+#6 /var/www/yii/framework/web/filters/CInlineFilter.php(58): MediumController->filterAccessControl()
+#7 /var/www/yii/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter()
+#8 /var/www/yii/framework/web/CController.php(291): CFilterChain->run()
+#9 /var/www/yii/framework/web/CController.php(265): MediumController->runActionWithFilters()
+#10 /var/www/yii/framework/web/CWebApplication.php(282): MediumController->run()
+#11 /var/www/yii/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#12 /var/www/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#13 /var/www/bogi3cms/index.php(14): CWebApplication->run()
+REQUEST_URI=/bogi3cms/index.php/medium/imageUploader?areaId=&objectId=1
+in /var/www/bogi3cms/protected/controllers/MediumController.php (71)
+in /var/www/bogi3cms/index.php (14)
+2014/01/20 08:53:25 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'bogi3cms.media_to_object' doesn't exist. The SQL statement executed was: SHOW FULL COLUMNS FROM `media_to_object`.
+in /var/www/bogi3cms/protected/controllers/MediumController.php (45)
+in /var/www/bogi3cms/protected/controllers/MediumController.php (94)
+in /var/www/bogi3cms/index.php (14)
+2014/01/20 08:53:25 [error] [exception.CDbException] exception 'CDbException' with message 'A MediaToObject osztály media_to_object táblája nem található az adatbázisban.' in /var/www/yii/framework/db/ar/CActiveRecord.php:2362
+Stack trace:
+#0 /var/www/yii/framework/db/ar/CActiveRecord.php(411): CActiveRecordMetaData->__construct(Object(MediaToObject))
+#1 /var/www/yii/framework/db/ar/CActiveRecord.php(658): CActiveRecord->getMetaData()
+#2 /var/www/yii/framework/db/ar/CActiveRecord.php(1601): CActiveRecord->getTableSchema()
+#3 /var/www/bogi3cms/protected/controllers/MediumController.php(45): CActiveRecord->count('area_id = :area...', Array)
+#4 /var/www/bogi3cms/protected/controllers/MediumController.php(94): MediumController->generateImageFileName('1', '1')
+#5 /var/www/yii/framework/web/actions/CInlineAction.php(49): MediumController->actionImageUploader()
+#6 /var/www/yii/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#7 /var/www/yii/framework/web/filters/CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#8 /var/www/yii/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#9 /var/www/yii/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#10 /var/www/yii/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#11 /var/www/yii/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#12 /var/www/yii/framework/web/CController.php(291): CFilterChain->run()
+#13 /var/www/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#14 /var/www/yii/framework/web/CWebApplication.php(282): CController->run('imageUploader')
+#15 /var/www/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('medium/imageUpl...')
+#16 /var/www/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#17 /var/www/bogi3cms/index.php(14): CApplication->run()
+#18 {main}
+REQUEST_URI=/bogi3cms/index.php/medium/imageUploader?areaId=1&objectId=1
+HTTP_REFERER=http://localhost/bogi3cms/index.php/article/create
+---
+2014/01/20 19:54:53 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'mo.medium_id' in 'on clause'. The SQL statement executed was: SELECT *
+FROM `article` `a`
+JOIN `medium` `m` ON mo.medium_id = m.medium_id
+WHERE (a.article_status = :articleStatus) AND (a.article_parent_id is null)
+ORDER BY `a`.`article_seq` ASC.
+in /var/www/bogi3cms/protected/models/Article.php (138)
+in /var/www/bogi3cms/protected/controllers/ArticleController.php (134)
+in /var/www/bogi3cms/index.php (14)
+2014/01/20 19:54:53 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand hibába ütközött az SQL parancs végrehajtása közben: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'mo.medium_id' in 'on clause'. The SQL statement executed was: SELECT *
+FROM `article` `a`
+JOIN `medium` `m` ON mo.medium_id = m.medium_id
+WHERE (a.article_status = :articleStatus) AND (a.article_parent_id is null)
+ORDER BY `a`.`article_seq` ASC' in /var/www/yii/framework/db/CDbCommand.php:543
+Stack trace:
+#0 /var/www/yii/framework/db/CDbCommand.php(396): CDbCommand->queryInternal('fetchAll', Array, Array)
+#1 /var/www/bogi3cms/protected/models/Article.php(138): CDbCommand->queryAll()
+#2 /var/www/bogi3cms/protected/controllers/ArticleController.php(134): Article->getArticlesByParentId(NULL)
+#3 /var/www/yii/framework/web/actions/CInlineAction.php(49): ArticleController->actionIndex()
+#4 /var/www/yii/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#5 /var/www/yii/framework/web/filters/CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#6 /var/www/yii/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#7 /var/www/yii/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#8 /var/www/yii/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#9 /var/www/yii/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#10 /var/www/yii/framework/web/CController.php(291): CFilterChain->run()
+#11 /var/www/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#12 /var/www/yii/framework/web/CWebApplication.php(282): CController->run('index')
+#13 /var/www/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('article/index')
+#14 /var/www/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#15 /var/www/bogi3cms/index.php(14): CApplication->run()
+#16 {main}
+REQUEST_URI=/bogi3cms/index.php/article/index
+HTTP_REFERER=http://localhost/bogi3cms/index.php/site/login
+---
+2014/01/20 19:55:25 [error] [php] Undefined variable: wArticles (/var/www/bogi3cms/protected/views/article/index.php:16)
+Stack trace:
+#0 /var/www/yii/framework/web/CController.php(869): ArticleController->renderFile()
+#1 /var/www/yii/framework/web/CController.php(782): ArticleController->renderPartial()
+#2 /var/www/bogi3cms/protected/controllers/ArticleController.php(138): ArticleController->render()
+#3 /var/www/yii/framework/web/actions/CInlineAction.php(49): ArticleController->actionIndex()
+#4 /var/www/yii/framework/web/CController.php(308): CInlineAction->runWithParams()
+#5 /var/www/yii/framework/web/filters/CFilterChain.php(133): ArticleController->runAction()
+#6 /var/www/yii/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#7 /var/www/yii/framework/web/CController.php(1145): CAccessControlFilter->filter()
+#8 /var/www/yii/framework/web/filters/CInlineFilter.php(58): ArticleController->filterAccessControl()
+#9 /var/www/yii/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter()
+#10 /var/www/yii/framework/web/CController.php(291): CFilterChain->run()
+#11 /var/www/yii/framework/web/CController.php(265): ArticleController->runActionWithFilters()
+#12 /var/www/yii/framework/web/CWebApplication.php(282): ArticleController->run()
+#13 /var/www/yii/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#14 /var/www/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#15 /var/www/bogi3cms/index.php(14): CWebApplication->run()
+REQUEST_URI=/bogi3cms/index.php/article/index
+in /var/www/bogi3cms/protected/views/article/index.php (16)
+in /var/www/bogi3cms/protected/controllers/ArticleController.php (138)
+in /var/www/bogi3cms/index.php (14)
+2014/01/20 20:25:48 [warning] [application] Failed to set unsafe attribute "article_id" of "Article".
+in /var/www/bogi3cms/protected/controllers/ArticleController.php (103)
+in /var/www/bogi3cms/index.php (14)
+2014/01/20 20:27:17 [warning] [application] Failed to set unsafe attribute "article_id" of "Article".
+in /var/www/bogi3cms/protected/controllers/ArticleController.php (103)
+in /var/www/bogi3cms/index.php (14)
+2014/01/20 20:40:58 [error] [exception.CException] exception 'CException' with message 'A tulajdonság "CJuiSortable.0" nincs definiálva.' in /var/www/yii/framework/base/CComponent.php:173
+Stack trace:
+#0 /var/www/yii/framework/web/CWidgetFactory.php(161): CComponent->__set('0', Array)
+#1 /var/www/yii/framework/web/CBaseController.php(146): CWidgetFactory->createWidget(Object(ArticleController), 'zii.widgets.jui...', Array)
+#2 /var/www/yii/framework/web/CBaseController.php(172): CBaseController->createWidget('zii.widgets.jui...', Array)
+#3 /var/www/bogi3cms/protected/views/article/index.php(33): CBaseController->widget('zii.widgets.jui...', Array)
+#4 /var/www/yii/framework/web/CBaseController.php(126): require('/var/www/bogi3c...')
+#5 /var/www/yii/framework/web/CBaseController.php(95): CBaseController->renderInternal('/var/www/bogi3c...', Array, true)
+#6 /var/www/yii/framework/web/CController.php(869): CBaseController->renderFile('/var/www/bogi3c...', Array, true)
+#7 /var/www/yii/framework/web/CController.php(782): CController->renderPartial('index', Array, true)
+#8 /var/www/bogi3cms/protected/controllers/ArticleController.php(137): CController->render('index', Array)
+#9 /var/www/yii/framework/web/actions/CInlineAction.php(49): ArticleController->actionIndex()
+#10 /var/www/yii/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#11 /var/www/yii/framework/web/filters/CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#12 /var/www/yii/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#13 /var/www/yii/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#14 /var/www/yii/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#15 /var/www/yii/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#16 /var/www/yii/framework/web/CController.php(291): CFilterChain->run()
+#17 /var/www/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#18 /var/www/yii/framework/web/CWebApplication.php(282): CController->run('index')
+#19 /var/www/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('article/index')
+#20 /var/www/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#21 /var/www/bogi3cms/index.php(14): CApplication->run()
+#22 {main}
+REQUEST_URI=/bogi3cms/index.php/article/index
+---
+2014/01/20 20:59:49 [warning] [application] Failed to set unsafe attribute "article_id" of "Article".
+in /var/www/bogi3cms/protected/controllers/ArticleController.php (105)
+in /var/www/bogi3cms/index.php (14)
+2014/01/20 23:29:41 [warning] [application] Failed to set unsafe attribute "article_id" of "Article".
+in /var/www/bogi3cms/protected/controllers/ArticleController.php (105)
+in /var/www/bogi3cms/index.php (14)
