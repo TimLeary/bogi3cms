@@ -1,19 +1,29 @@
+<h1>Articles</h1>
 <?php
-/* @var $this ArticleController */
-/* @var $dataProvider CActiveDataProvider */
-/*
-$this->breadcrumbs=array(
-	'Articles',
-);
-*/
-$this->menu=array(
-    array('label'=>'Create Article', 'url'=>array('create','parentId' => $wParentId)),
-    array('label'=>'Manage Article', 'url'=>array('admin')),
-);
+    //var_dump($wElderParents);
+
+    $breadcrumbArray = array();
+    if($wElderParents != null): ?>
+        <div id="articleBreadcrumb">
+            <a href="<?= Yii::app()->createUrl('article/index',array('parentId'=>null)) ?>">Article base</a> > 
+        <?php
+        $parentCounter = 0;
+        $parentNum = count($wElderParents);
+        foreach ($wElderParents as $wElderParent): ?>
+            <?php if(++$parentCounter != $parentNum): ?>
+            <a href="<?= Yii::app()->createUrl('article/index',array('parentId'=>key($wElderParent))) ?>"><?= ucfirst($wElderParent[key($wElderParent)]) ?></a> > <?php
+            endif;
+        endforeach; ?>
+        </div>
+        <?php
+    endif;
+
+    $this->menu=array(
+        array('label'=>'Create Article', 'url'=>array('create','parentId' => $wParentId)),
+    );
 ?>
 
-<h1>Articles</h1>
-<?php var_dump($wArticles, $wParentId); ?>
+<?php //var_dump($wArticles, $wParentId); ?>
 <?php 
     $articleShowList = array();
     
@@ -29,7 +39,7 @@ $this->menu=array(
         } else {
             $articleShowList[$wArticle['article_id']] .= '<div class="showChildsIt"><a href="'.Yii::app()->createUrl('article/index',array('parentId'=>$wArticle['article_id'])).'"></a></div>';
         }
-        $articleShowList[$wArticle['article_id']] .= '<div class="deleteIt"><a href="'.Yii::app()->createUrl('article/delete',array('parentId'=>$wParentId,'id' => $wArticle['article_id'])).'"></a></div>';
+        $articleShowList[$wArticle['article_id']] .= '<div class="deleteIt"><a href="'.Yii::app()->createUrl('article/delete',array('id' => $wArticle['article_id'])).'"></a></div>';
         $articleShowList[$wArticle['article_id']] .= '</div>';
     }
 ?>

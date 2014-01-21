@@ -23,7 +23,9 @@
  */
 class Article extends CActiveRecord
 {
-	/**
+        public $elderParents = array();
+
+        /**
 	 * @return string the associated database table name
 	 */
 	public function tableName()
@@ -135,6 +137,30 @@ class Article extends CActiveRecord
             }
             
             return $articles->queryAll();
+        }
+        
+        public function getElderParents($articleId){
+            $article = Article::model()->findByPk($articleId);
+            if($article != null){
+                $tmpArray = array($article->article_id => $article->article_title);
+                array_unshift($this->elderParents, $tmpArray);
+                self::getElderParents($article->article_parent_id);
+                return $this->elderParents;
+            }
+        }
+
+        public function getARArticlesByParentId($parentId = null, $articleStatus = 'active'){
+            $criteria = new CDbCriteria();
+            $criteria->alias = 'a';
+            if($parentId == null){
+                $criteria->condition = "a.article_status = :articleStatus and a.article_parent_id is null";
+                $criteria->params = array(':articleStatus'=>$articleStatus);
+            } else {
+                $criteria->condition = "a.article_status = :articleStatus and a.article_parent_id = :articleParentId";
+                $criteria->params = array(':articleStatus'=>$articleStatus,':articleParentId'=>$parentId);
+            }
+            $criteria->order = 'a.article_seq ASC';
+            return Article::model()->findAll($criteria);
         }
 
         /**

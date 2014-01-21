@@ -299,3 +299,7 @@ ul#articleShowList li div.articleList div.deleteIt a{
     background-position-x: -69px;
     background-position-y: 42px;
 }
+
+div#articleBreadcrumb{
+    padding-bottom: 20px;
+}

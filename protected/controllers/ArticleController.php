@@ -15,7 +15,7 @@ class ArticleController extends Controller
 	{
 		return array(
 			'accessControl', // perform access control for CRUD operations
-			'postOnly + delete', // we only allow deletion via POST request
+			//'postOnly + delete', // we only allow deletion via POST request
 		);
 	}
 
@@ -43,17 +43,6 @@ class ArticleController extends Controller
 				'users'=>array('*'),
 			),
 		);
-	}
-
-	/**
-	 * Displays a particular model.
-	 * @param integer $id the ID of the model to be displayed
-	 */
-	public function actionView($id)
-	{
-		$this->render('view',array(
-			'model'=>$this->loadModel($id),
-		));
 	}
 
 	/**
@@ -103,8 +92,18 @@ class ArticleController extends Controller
 		if(isset($_POST['Article']))
 		{
 			$model->attributes=$_POST['Article'];
-			if($model->save())
-				$this->redirect(array('view','id'=>$model->article_id));
+			if($model->save()){
+                            if(($model->article_parent_id != null)AND($model->article_status == 'active')){
+                                $parentModel = Article::model()->find('article_id = :parentId',array(':parentId'=>$model->article_parent_id));
+                                if(($parentModel->is_just_parent == null)OR($parentModel->is_just_parent == 0)){
+                                    $parentModel->is_just_parent = 1;
+                                    $parentModel->save();
+                                }
+                            }
+                            
+                            
+                            $this->redirect(array('index'));
+                        }
 		}
 
 		$this->render('update',array(
@@ -117,41 +116,54 @@ class ArticleController extends Controller
 	 * If deletion is successful, the browser will be redirected to the 'admin' page.
 	 * @param integer $id the ID of the model to be deleted
 	 */
-	public function actionDelete($id)
-	{
-		$this->loadModel($id)->delete();
+	public function actionDelete($id){
+            $model = $this->loadModel($id);
+            
+            $brothers = Article::model()->getARArticlesByParentId($model->article_parent_id);
+            
+            if(count($brothers) <= 1){
+                if($model->article_parent_id != null){
+                    $parent = Article::model()->findByPk($model->article_parent_id);
+                    $parent->is_just_parent = null;
+                    $parent->save();
+                }
+            } else {
+                $i = 0;
+                foreach ($brothers as $brother){
+                    if($brother->article_id != $id){
+                        $brother->article_seq = $i;
+                        $brother->save();
+                        ++$i;
+                    }
+                }
+            }
+            
+            $childs = Article::model()->getARArticlesByParentId($id);
+            if(count($childs) <= 1){
+                foreach ($childs as $child){
+                    $child->delete();
+                }
+            }
+            
+            $model->delete();
 
-		// if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
-		if(!isset($_GET['ajax']))
-			$this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));
+            // if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
+            if(!isset($_GET['ajax']))
+                    $this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('index'));
 	}
 
 	/**
 	 * Lists all models.
 	 */
-	public function actionIndex()
-	{
+	public function actionIndex($parentId = null){
             $parentId = Yii::app()->request->getParam('parentId',null);
+            $wElderParents = Article::model()->getElderParents($parentId);
             $wArticles = Article::model()->getArticlesByParentId($parentId);
             $this->render('index',array(
                 'wArticles'=>$wArticles,
-                'wParentId'=>$parentId
+                'wParentId'=>$parentId,
+                'wElderParents' => $wElderParents
             ));
-	}
-
-	/**
-	 * Manages all models.
-	 */
-	public function actionAdmin()
-	{
-		$model=new Article('search');
-		$model->unsetAttributes();  // clear any default values
-		if(isset($_GET['Article']))
-			$model->attributes=$_GET['Article'];
-
-		$this->render('admin',array(
-			'model'=>$model,
-		));
 	}
 
 	/**

@@ -19,6 +19,7 @@
 
 	<?php echo $form->errorSummary($model); ?>
         <?php echo $form->hiddenField($model,'article_id'); ?>
+        <?php echo $form->hiddenField($model,'article_parent_id'); ?>
 	<div class="row">
 		<?php echo $form->labelEx($model,'article_title'); ?>
 		<?php echo $form->textField($model,'article_title',array('size'=>60,'maxlength'=>255)); ?>
