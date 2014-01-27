@@ -36,7 +36,7 @@ class ArticleController extends Controller
 				'expression' => 'Yii::app()->user->isGuest() === 0',
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
-				'actions'=>array('index','create','view','admin','delete','update'),
+				'actions'=>array('index','create','view','admin','delete','update','changeSort'),
 				'expression' => 'Yii::app()->user->isAdmin() === 1',
 			),
 			array('deny',  // deny all users
@@ -165,8 +165,22 @@ class ArticleController extends Controller
                 'wElderParents' => $wElderParents
             ));
 	}
+        
+        
+        public function actionChangeSort(){
+            $parentId = Yii::app()->request->getParam('parentId',null);
+            $childs = Article::model()->getARArticlesByParentId($parentId);
+            $newOrderStr = Yii::app()->request->getParam('newOrderStr');
+            $newOrder = CJSON::decode($newOrderStr);
+            
+            foreach ($childs as $child){
+                $child->article_seq = array_search($child->article_id, $newOrder['newOrder']);
+                $child->save();
+            }
+            
+        }
 
-	/**
+                /**
 	 * Returns the data model based on the primary key given in the GET variable.
 	 * If the data model is not found, an HTTP exception will be raised.
 	 * @param integer $id the ID of the model to be loaded

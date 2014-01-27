@@ -732,3 +732,46 @@ in /var/www/bogi3cms/index.php (14)
 2014/01/22 00:00:20 [warning] [application] Failed to set unsafe attribute "article_id" of "Article".
 in /var/www/bogi3cms/protected/controllers/ArticleController.php (94)
 in /var/www/bogi3cms/index.php (14)
+2014/01/27 19:31:24 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'A rendszer nem találja a "changeSort" action-t.' in /var/www/yii/framework/web/CController.php:483
+Stack trace:
+#0 /var/www/yii/framework/web/CController.php(270): CController->missingAction('changeSort')
+#1 /var/www/yii/framework/web/CWebApplication.php(282): CController->run('changeSort')
+#2 /var/www/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('article/changeS...')
+#3 /var/www/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#4 /var/www/bogi3cms/index.php(14): CApplication->run()
+#5 {main}
+REQUEST_URI=/bogi3cms/index.php/article/changeSort?parentId=&newOrderStr={%22newOrder%22:[%226%22,%221%22]}
+HTTP_REFERER=http://localhost/bogi3cms/index.php/article
+---
+2014/01/27 19:31:43 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'A rendszer nem találja a "changeSort" action-t.' in /var/www/yii/framework/web/CController.php:483
+Stack trace:
+#0 /var/www/yii/framework/web/CController.php(270): CController->missingAction('changeSort')
+#1 /var/www/yii/framework/web/CWebApplication.php(282): CController->run('changeSort')
+#2 /var/www/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('article/changeS...')
+#3 /var/www/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#4 /var/www/bogi3cms/index.php(14): CApplication->run()
+#5 {main}
+REQUEST_URI=/bogi3cms/index.php/article/changeSort?parentId=&newOrderStr={%22newOrder%22:[%221%22,%226%22]}
+HTTP_REFERER=http://localhost/bogi3cms/index.php/article
+---
+2014/01/27 19:42:45 [error] [exception.CException] exception 'CException' with message 'Article and its behaviors do not have a method or closure named "getAtributes".' in /var/www/yii/framework/base/CComponent.php:266
+Stack trace:
+#0 /var/www/yii/framework/db/ar/CActiveRecord.php(227): CComponent->__call('getAtributes', Array)
+#1 /var/www/bogi3cms/protected/controllers/ArticleController.php(177): CActiveRecord->__call('getAtributes', Array)
+#2 /var/www/bogi3cms/protected/controllers/ArticleController.php(177): Article->getAtributes()
+#3 /var/www/yii/framework/web/actions/CInlineAction.php(49): ArticleController->actionChangeSort()
+#4 /var/www/yii/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#5 /var/www/yii/framework/web/filters/CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#6 /var/www/yii/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#7 /var/www/yii/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#8 /var/www/yii/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#9 /var/www/yii/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#10 /var/www/yii/framework/web/CController.php(291): CFilterChain->run()
+#11 /var/www/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#12 /var/www/yii/framework/web/CWebApplication.php(282): CController->run('changeSort')
+#13 /var/www/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('article/changeS...')
+#14 /var/www/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#15 /var/www/bogi3cms/index.php(14): CApplication->run()
+#16 {main}
+REQUEST_URI=/bogi3cms/index.php/article/changeSort?parentId=&newOrderStr={%22newOrder%22:[%226%22,%221%22]}
+---
