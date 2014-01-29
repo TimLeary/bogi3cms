@@ -33,6 +33,7 @@
                     'attribute' => 'article_text',
                     'options' => array(
                         'imageUpload'=>Yii::app()->createUrl('article/imageUpload'),
+                        'fileUpload' =>Yii::app()->createUrl('article/fileUpload'),
                     )
                 )); ?>
                 <?php echo $form->error($model,'article_text'); ?>

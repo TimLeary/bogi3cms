@@ -6,7 +6,7 @@ class ArticleController extends Controller
 	 * @var string the default layout for the views. Defaults to '//layouts/column2', meaning
 	 * using two-column layout. See 'protected/views/layouts/column2.php'.
 	 */
-	//public $layout='//layouts/column2';
+	public $layout='//layouts/column2';
         
         public function init(){
             //var_dump(Yii::app()->getController());
@@ -42,7 +42,7 @@ class ArticleController extends Controller
 				'expression' => 'Yii::app()->user->isGuest() === 0',
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
-				'actions'=>array('index','create','view','admin','delete','update','changeSort','imageUpload'),
+				'actions'=>array('index','create','view','admin','delete','update','changeSort','imageUpload','fileUpload'),
 				'expression' => 'Yii::app()->user->isAdmin() === 1',
 			),
 			array('deny',  // deny all users
@@ -50,6 +50,41 @@ class ArticleController extends Controller
 			),
 		);
 	}
+        
+        
+        public function actionFileUpload(){
+            $this->layout = '//layouts/ajax';
+            //header('Content-type: application/json');
+            $uploadPath = realpath(Yii::app()->basePath . '/../uploads/article/');
+            //var_dump($uploadPath);
+            $uploadUrl = Yii::app()->baseUrl.'/uploads/article/';
+            $file = CUploadedFile::getInstanceByName('file');
+            //var_dump($this); exit();
+            if ($file instanceof CUploadedFile) {
+                    $fileName = $file->name;
+                    
+                    $path = $uploadPath.DIRECTORY_SEPARATOR.$fileName;
+                    
+                    if (file_exists($path) || !$file->saveAs($path)) {
+                            echo CJSON::encode(
+                                    array('error'=>'Could not save file or file exists: "'.$path.'".')
+                            ); Yii::app()->end();
+                    }
+                    $attributeUrl = $uploadUrl.$fileName;
+                    $data = array(
+                            'filelink'=>$attributeUrl,
+                            'filename' => $file->name
+                    );
+                    
+                    echo CJSON::encode($data);
+                    Yii::app()->end();
+            } else {
+                    echo CJSON::encode(
+                        array('error'=>'Could not upload file.')
+                    ); Yii::app()->end();
+            }
+        
+        }
         
         public function actionImageUpload(){
             $this->layout = '//layouts/ajax';

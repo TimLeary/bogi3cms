@@ -188,4 +188,29 @@ class Article extends CActiveRecord
             
             return $articles->queryRow();
         }
+        
+        public function getBasicMenu($parentId = null){
+            $returnArray = array();
+            $menu = Yii::app()->db->createCommand()
+                ->select(array('article_id','article_seq','link','article_title','is_just_parent','is_just_link','article_status'))
+                ->from('article')
+                ->where('article_status = :articleStatus',array(':articleStatus' => 'active'));
+            
+            if($parentId == null){
+                $menu->andWhere('article_parent_id is null');
+            } else {
+                $menu->andWhere('article_parent_id = :articleParentId', array(':articleParentId' => $parentId));
+            }
+            
+            $menuItems = $menu->queryAll();
+            
+            $i = 0;
+            foreach($menuItems as $item){
+                $returnArray[$i] = $item;
+                $returnArray[$i]['childs'] = self::getBasicMenu($item['article_id']);
+                $i++;
+            }
+            
+            return $returnArray;
+        }
 }
