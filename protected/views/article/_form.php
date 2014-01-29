@@ -5,7 +5,7 @@
 ?>
 
 <div class="form">
-<?php Yii::import('ext.imperavi-redactor-widget.ImperaviRedactorWidget'); ?>
+<?php Yii::import('ext.yii-redactor.ERedactorWidget'); ?>
 <?php $form=$this->beginWidget('CActiveForm', array(
 	'id'=>'article-form',
 	// Please note: When you enable ajax validation, make sure the corresponding
@@ -28,9 +28,12 @@
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'article_text'); ?>
-                <?php $this->widget('ImperaviRedactorWidget', array(
+                <?php $this->widget('ERedactorWidget', array(
                     'model' => $model,
                     'attribute' => 'article_text',
+                    'options' => array(
+                        'imageUpload'=>Yii::app()->createUrl('article/imageUpload'),
+                    )
                 )); ?>
                 <?php echo $form->error($model,'article_text'); ?>
 	</div>

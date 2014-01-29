@@ -3,8 +3,8 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Jan 20, 2014 at 10:32 PM
--- Server version: 5.5.34-0ubuntu0.13.10.1
+-- Generation Time: Jan 29, 2014 at 01:59 PM
+-- Server version: 5.5.35-0ubuntu0.13.10.1
 -- PHP Version: 5.5.3-1ubuntu2.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
@@ -60,16 +60,7 @@ CREATE TABLE IF NOT EXISTS `article` (
   `article_status` enum('inedit','active','passive') NOT NULL DEFAULT 'inedit',
   PRIMARY KEY (`article_id`),
   KEY `fk_article_id_to_parent_idx` (`article_parent_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=7 ;
-
---
--- Dumping data for table `article`
---
-
-INSERT INTO `article` (`article_id`, `article_parent_id`, `article_language_id`, `article_desc`, `article_keywords`, `link`, `article_title`, `article_text`, `article_seq`, `is_just_parent`, `is_just_link`, `article_status`) VALUES
-(4, NULL, NULL, NULL, NULL, NULL, 'Lófasz a hidegvízben', '', NULL, NULL, 0, 'active'),
-(5, NULL, NULL, NULL, NULL, NULL, 'Valami készül dánia', '', 1, NULL, 0, 'active'),
-(6, 4, NULL, NULL, NULL, NULL, 'first child', '', 0, NULL, 0, 'active');
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 

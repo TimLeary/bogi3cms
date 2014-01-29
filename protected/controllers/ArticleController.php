@@ -6,9 +6,15 @@ class ArticleController extends Controller
 	 * @var string the default layout for the views. Defaults to '//layouts/column2', meaning
 	 * using two-column layout. See 'protected/views/layouts/column2.php'.
 	 */
-	public $layout='//layouts/column2';
+	//public $layout='//layouts/column2';
+        
+        public function init(){
+            //var_dump(Yii::app()->getController());
+            //exit();
+        }
+        
 
-	/**
+        /**
 	 * @return array action filters
 	 */
 	public function filters()
@@ -18,7 +24,7 @@ class ArticleController extends Controller
 			//'postOnly + delete', // we only allow deletion via POST request
 		);
 	}
-
+        
 	/**
 	 * Specifies the access control rules.
 	 * This method is used by the 'accessControl' filter.
@@ -36,7 +42,7 @@ class ArticleController extends Controller
 				'expression' => 'Yii::app()->user->isGuest() === 0',
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
-				'actions'=>array('index','create','view','admin','delete','update','changeSort'),
+				'actions'=>array('index','create','view','admin','delete','update','changeSort','imageUpload'),
 				'expression' => 'Yii::app()->user->isAdmin() === 1',
 			),
 			array('deny',  // deny all users
@@ -44,8 +50,45 @@ class ArticleController extends Controller
 			),
 		);
 	}
-
-	/**
+        
+        public function actionImageUpload(){
+            $this->layout = '//layouts/ajax';
+            //header('Content-type: application/json');
+            $uploadPath = realpath(Yii::app()->basePath . '/../images/uploaded/original/');
+            //var_dump($uploadPath);
+            $uploadUrl = Yii::app()->baseUrl.'/images/uploaded/original/';
+            $file = CUploadedFile::getInstanceByName('file');
+            //var_dump($this); exit();
+            if ($file instanceof CUploadedFile) {
+                    if (!in_array(strtolower($file->getExtensionName()),array('gif','png','jpg','jpeg'))) {
+                            echo CJSON::encode(
+                                    array('error'=>'Invalid file extension '. $file->getExtensionName().'.')
+                            ); Yii::app()->end();
+                    }
+                    $fileName=trim(md5(time().uniqid(rand(),true))).'.'.$file->getExtensionName();
+                    
+                    $path = $uploadPath.DIRECTORY_SEPARATOR.$fileName;
+                    
+                    if (file_exists($path) || !$file->saveAs($path)) {
+                            echo CJSON::encode(
+                                    array('error'=>'Could not save file or file exists: "'.$path.'".')
+                            ); Yii::app()->end();
+                    }
+                    $attributeUrl=$uploadUrl.$fileName;
+                    $data = array(
+                            'filelink'=>$attributeUrl,
+                    );
+                    echo CJSON::encode($data);
+                    Yii::app()->end();
+            } else {
+                    echo CJSON::encode(
+                        array('error'=>'Could not upload file.')
+                    ); Yii::app()->end();
+            }
+        
+        }
+        
+        /**
 	 * Creates a new model.
 	 * If creation is successful, the browser will be redirected to the 'view' page.
 	 */
@@ -83,7 +126,7 @@ class ArticleController extends Controller
 	 * @param integer $id the ID of the model to be updated
 	 */
 	public function actionUpdate($id)
-	{
+	{   //var_dump(Yii::app()->basePath.'/images/uploaded/original/',Yii::app()->baseUrl.'/images/uploaded/original/');
 		$model=$this->loadModel($id);
 
 		// Uncomment the following line if AJAX validation is needed
