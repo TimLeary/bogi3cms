@@ -139,6 +139,16 @@ class Article extends CActiveRecord
             return $articles->queryAll();
         }
         
+        public function getArticleById($articleId = null, $articleStatus = 'active'){
+            $articles = Yii::app()->db->createCommand()
+                ->select(array('*'))
+                ->from('article a')
+                ->where('a.article_status = :articleStatus',array(':articleStatus' => $articleStatus))
+                ->andWhere('a.article_id = :articleId', array(':articleId' => $articleId));
+            
+            return $articles->queryAll();
+        }
+        
         public function getElderParents($articleId){
             $article = Article::model()->findByPk($articleId);
             if($article != null){
@@ -202,6 +212,8 @@ class Article extends CActiveRecord
                 $menu->andWhere('article_parent_id = :articleParentId', array(':articleParentId' => $parentId));
             }
             
+            $menu->order(array('article_seq ASC'));
+            
             $menuItems = $menu->queryAll();
             
             $i = 0;
@@ -212,5 +224,16 @@ class Article extends CActiveRecord
             }
             
             return $returnArray;
+        }
+        
+        public function getVeryFirstChild(){
+            $menu = Yii::app()->db->createCommand()
+                ->select(array('article_id','is_just_parent'))
+                ->from('article')
+                ->where('article_status = :articleStatus',array(':articleStatus' => 'active'))
+                ->andWhere('article_parent_id is null')
+                ->order(array('article_seq ASC'))
+                ->limit(1);
+            return $menu->queryRow();
         }
 }

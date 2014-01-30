@@ -1,4 +1,5 @@
 <?php
+define('APP_PATH',dirname(__FILE__));
 date_default_timezone_set('Europe/Budapest');
 
 // change the following paths if necessary

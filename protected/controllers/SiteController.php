@@ -2,7 +2,10 @@
 
 class SiteController extends Controller
 {
-	/**
+    
+        public $menuItems;
+        
+        /**
 	 * Declares class-based actions.
 	 */
 	public function actions()
@@ -27,11 +30,28 @@ class SiteController extends Controller
 	 */
 	public function actionIndex()
 	{
+                $this->layout = "main_site";
                 $menuItems = Article::model()->getBasicMenu();
-                var_dump($menuItems);
-		// renders the view file 'protected/views/site/index.php'
-		// using the default layout 'protected/views/layouts/main.php'
-		$this->render('index');
+                
+                $showChilds = Yii::app()->request->getParam('showChilds',null);
+                $showItem = Yii::app()->request->getParam('showItem',null);
+                
+                if(($showChilds == null)AND($showItem == null)){
+                    $firstChild = Article::model()->getVeryFirstChild();
+                    if($firstChild['is_just_parent'] == 1){
+                        $showChilds = $firstChild['article_id'];
+                    } else {
+                        $showItem = $firstChild['article_id'];
+                    }
+                }
+                
+                if($showChilds != null){
+                    $wArticles = Article::model()->getArticlesByParentId($showChilds);
+                } else {
+                    $wArticles = Article::model()->getArticleById($showItem);
+                }
+                $this->menuItems = $menuItems;
+		$this->render('index',array('menuItems' => $menuItems,'wArticles'=>$wArticles));
 	}
 
 	/**

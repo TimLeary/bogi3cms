@@ -20,6 +20,29 @@
 	<?php echo $form->errorSummary($model); ?>
         <?php echo $form->hiddenField($model,'article_id'); ?>
         <?php echo $form->hiddenField($model,'article_parent_id'); ?>
+        
+        <div class="row">
+		<?php echo $form->labelEx($model,'article_keywords'); ?>
+		<?php echo $form->textArea($model,'article_keywords',array('maxlength'=>500)); ?>
+		<?php echo $form->error($model,'article_keywords'); ?>
+	</div>
+        
+        <div class="row">
+		<?php echo $form->labelEx($model,'article_desc'); ?>
+		<?php echo $form->textArea($model,'article_desc',array('maxlength'=>500)); ?>
+		<?php echo $form->error($model,'article_desc'); ?>
+	</div>
+        
+        <div class="row">
+		<?php echo $form->labelEx($model,'link'); ?>
+		<?php echo $form->textField($model,'link',array('size'=>60,'maxlength'=>500)); ?>
+		<?php echo $form->error($model,'link'); ?>
+		<?php echo $form->labelEx($model,'is_just_link'); ?>
+		<?php echo $form->checkBox($model,'is_just_link'); ?>
+		<?php echo $form->error($model,'is_just_link'); ?>
+	</div>
+        
+        
 	<div class="row">
 		<?php echo $form->labelEx($model,'article_title'); ?>
 		<?php echo $form->textField($model,'article_title',array('size'=>60,'maxlength'=>255)); ?>

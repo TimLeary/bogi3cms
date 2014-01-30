@@ -1,20 +1,50 @@
 <?php
-/* @var $this SiteController */
-
-$this->pageTitle=Yii::app()->name;
+    $jsCalls = array();
 ?>
-
-<h1>Welcome to <i><?php echo CHtml::encode(Yii::app()->name); ?></i></h1>
-
-<p>Congratulations! You have successfully created your Yii application.</p>
-
-<p>You may change the content of this page by modifying the following two files:</p>
-<ul>
-	<li>View file: <code><?php echo __FILE__; ?></code></li>
-	<li>Layout file: <code><?php echo $this->getLayoutFile('main'); ?></code></li>
-</ul>
-
-<p>For more details on how to further develop this application, please read
-the <a href="http://www.yiiframework.com/doc/">documentation</a>.
-Feel free to ask in the <a href="http://www.yiiframework.com/forum/">forum</a>,
-should you have any questions.</p>
+<?php
+if($wArticles != null):
+    ?>
+    <div id="showArticle">
+        <?php
+        foreach ($wArticles as $wArticle):
+            $pictures = MediaToObject::model()->getPicturesByObject(Yii::app()->params['articleArea'], $wArticle['article_id']);
+        ?>
+        <div class="articleView">
+            <h3><?=$wArticle['article_title']?></h3>
+            <?php if($pictures != null): ?>
+                <div id="articleItem-<?= $wArticle['article_id'] ?>" class="left articleImage linkCursor" style="background-image: url('<?= Yii::app()->getBaseUrl(true).'/images/uploaded/thumbnail/'.$pictures[0]['filename']?>'); width:<?= Yii::app()->params['thumbnailSizeMaxX']?>px; height:<?= Yii::app()->params['thumbnailSizeMaxY']?>px;"></div>
+            <?php endif; ?>
+            <div class="articleContent"><?=$wArticle['article_text']?></div>
+        </div>
+        <?php 
+            $jsCall = null;
+            if($pictures != null):
+                $jsCall = '$("#articleItem-'.$wArticle['article_id'].'").click(function() {';
+                $jsCall .= '$.fancybox([';
+                foreach ($pictures as $onePic):
+                    $jsCall .= "'".Yii::app()->getBaseUrl(false).'/images/uploaded/medium/'.$onePic['filename']."',";
+                endforeach;
+                $jsCall .= '], {
+                        \'padding\'			: 0,
+                        \'transitionIn\'		: \'none\',
+                        \'transitionOut\'		: \'none\',
+                        \'type\'              : \'image\',
+                        \'changeFade\'        : 0
+                    });';
+                $jsCall .= '});';
+                $jsCalls[] = $jsCall;
+            endif;
+        ?>
+        
+        <?php  
+        endforeach;
+        ?>
+    </div>
+    <?php
+endif;
+?>
+<script type="text/javascript">
+    jQuery(document).ready(function() {
+        <?= implode(' ', $jsCalls) ?>
+    });
+</script>
