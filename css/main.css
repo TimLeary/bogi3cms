@@ -5,21 +5,27 @@ body
 	color: #555;
 	font: normal 10pt Arial,Helvetica,sans-serif;
 	background: #EFEFEF;
+	background-image: url("../images/back.jpg");
 }
 
 #page
 {
-	margin-top: 5px;
-	margin-bottom: 5px;
+	margin-top: 0px;
+	margin-bottom: 0px;
 	background: white;
-	border: 1px solid #C9E0ED;
+	border: 1px solid #000;
 }
 
 #header
 {
 	margin: 0;
-	padding: 0;
-	border-top: 3px solid #C9E0ED;
+	padding-top:0px;
+	background-image: url("../images/gazdagreti_head.jpg");
+	background-repeat: no-repeat;
+	z-index: 80000;
+	display:block;
+	height:155px;
+	margin-left:20px;
 }
 
 #content
@@ -32,19 +38,25 @@ body
 	padding: 20px 20px 20px 0;
 }
 
-#footer
-{
-	padding: 10px;
-	margin: 10px 20px;
+#footer {
 	font-size: 0.8em;
 	text-align: center;
-	border-top: 1px solid #C9E0ED;
+	background-color:#000;
+	color:#FFF;
 }
 
 #logo
 {
-	padding: 10px 20px;
-	font-size: 200%;
+	padding: 50px 0px;
+	/*font-size: 200%;*/
+	width:340px;
+	background-image: url("../images/gazdagreti_logo.png");
+	background-repeat: no-repeat;
+	z-index: 90000;
+	background-color:#f4f4f4;
+	display:block;
+	background-position: 10px 10px;
+	
 }
 
 #mainmenu
@@ -302,4 +314,53 @@ ul#articleShowList li div.articleList div.deleteIt a{
 
 div#articleBreadcrumb{
     padding-bottom: 20px;
+}
+
+div#mainMbMenu{
+	z-index: 10000;
+	display:block;
+	min-height: 30px;
+	width:910px;
+	margin-left:20px;
+	opacity: 0.87;
+	-khtml-opacity: 0.87;
+	-moz-opacity: 0.87;
+	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=80)";
+	filter: alpha(opacity=87);
+	filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=80)";
+	}
+
+div#showArticle {
+	margin-left:20px;
+	margin-right:20px;
+	margin-top: 30px;
+	}
+	
+#nav li a {
+		font-size:12px;
+		text-transform: uppercase;
+		color:#FFF;
+		}
+		
+#nav li a:hover {
+		color:#00a9a2;
+		}
+		
+#nav li.parent.last a {
+		background-color:#000;
+		color:#FFF;
+		}	
+		
+#nav li.parent.last a:hover {
+		background-color:#000;
+		color:#00a9a2;
+		}
+		
+#nav-bar {
+	height:40px;
+	background:url(nav1_bg.gif) repeat-x 0 100% #000;
+	}		
+
+#nav-bar ul#nav {
+	margin-top:14px;
 }
