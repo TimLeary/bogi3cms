@@ -59,15 +59,19 @@ function menuItemForItemArray($items){
 $itemsMenu = menuItemForItemArray($this->menuItems);
 ?>
 <body>
-
+<div id="headerContent">
+	<div class="container" id="headerMenu">
+		<div id="mainMbMenu">
+			<?php $this->widget('application.extensions.mbmenu.MbMenu',$itemsMenu); ?>
+		</div>
+	</div>
+</div>
 <div class="container" id="page">
 
 	<div id="header">
-		<div id="logo"><?php echo CHtml::encode(Yii::app()->name); ?></div>
+		<div id="logo"><?php //echo CHtml::encode(Yii::app()->name); ?></div>
 	</div><!-- header -->
-        <div id="mainMbMenu">
-            <?php $this->widget('application.extensions.mbmenu.MbMenu',$itemsMenu); ?>
-        </div>
+
 	<?php echo $content; ?>
 
 	<div class="clear"></div>

@@ -10,12 +10,19 @@ if($wArticles != null):
             $pictures = MediaToObject::model()->getPicturesByObject(Yii::app()->params['articleArea'], $wArticle['article_id']);
         ?>
         <div class="articleView">
-            <h3><?=$wArticle['article_title']?></h3>
-            <?php if($pictures != null): ?>
-                <div id="articleItem-<?= $wArticle['article_id'] ?>" class="left articleImage linkCursor" style="background-image: url('<?= Yii::app()->getBaseUrl(true).'/images/uploaded/thumbnail/'.$pictures[0]['filename']?>'); width:<?= Yii::app()->params['thumbnailSizeMaxX']?>px; height:<?= Yii::app()->params['thumbnailSizeMaxY']?>px;"></div>
-            <?php endif; ?>
-            <div class="articleContent"><?=$wArticle['article_text']?></div>
+			<div class="articleTitle">
+				<h3><?=$wArticle['article_title']?></h3>
+			</div>
+			<div class="articleBody">
+				<?php if($pictures != null): ?>
+				<div class="articlePicBox">
+					<div id="articleItem-<?= $wArticle['article_id'] ?>" class="left articleImage linkCursor" style="background-image: url('<?= Yii::app()->getBaseUrl(true).'/images/uploaded/thumbnail/'.$pictures[0]['filename']?>'); width:<?= Yii::app()->params['thumbnailSizeMaxX']?>px; height:<?= Yii::app()->params['thumbnailSizeMaxY']?>px;"></div>
+				</div>
+				<?php endif; ?>
+				<div class="articleContent"><?=$wArticle['article_text']?></div>
+			</div>
         </div>
+		<div class="clear"></div>
         <?php 
             $jsCall = null;
             if($pictures != null):

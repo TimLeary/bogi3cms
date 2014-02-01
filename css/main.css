@@ -19,13 +19,15 @@ body
 #header
 {
 	margin: 0;
-	padding-top:0px;
+	padding-top:40px;
 	background-image: url("../images/gazdagreti_head.jpg");
 	background-repeat: no-repeat;
 	z-index: 80000;
 	display:block;
-	height:155px;
+	height:115px;
 	margin-left:20px;
+	margin-right:20px;
+	border-bottom:1px solid #000;
 }
 
 #content
@@ -47,9 +49,9 @@ body
 
 #logo
 {
-	padding: 50px 0px;
 	/*font-size: 200%;*/
 	width:340px;
+	height:115px;
 	background-image: url("../images/gazdagreti_logo.png");
 	background-repeat: no-repeat;
 	z-index: 90000;
@@ -328,6 +330,7 @@ div#mainMbMenu{
 	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=80)";
 	filter: alpha(opacity=87);
 	filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=80)";
+	background-color:#000;
 	}
 
 div#showArticle {
@@ -346,21 +349,65 @@ div#showArticle {
 		color:#00a9a2;
 		}
 		
-#nav li.parent.last a {
+#nav li.parent ul li a {
 		background-color:#000;
 		color:#FFF;
 		}	
 		
-#nav li.parent.last a:hover {
+#nav li.parent ul li a:hover {
 		background-color:#000;
 		color:#00a9a2;
 		}
 		
 #nav-bar {
 	height:40px;
-	background:url(nav1_bg.gif) repeat-x 0 100% #000;
 	}		
 
 #nav-bar ul#nav {
 	margin-top:14px;
 }
+
+#headerContent {
+position: fixed;
+width:100%;
+z-index: 10000;
+margin-left:auto;
+margin-right:auto;
+}
+
+#nav-container {
+border-bottom:1px solid #FFF;
+}
+
+div.articleView {
+display:table;
+margin-bottom:50px;
+border-bottom:1px solid #BEBEBE;
+width:100%;
+}
+
+div.articleImage {
+margin-right: 20px;
+margin-bottom: 20px;
+display:block;
+}
+
+div.articlePicBox{
+display:block;
+}
+
+div.articleContent{
+display:block;
+}
+
+div.articleBody{
+display:table-row;
+}
+
+div.articleTitle{
+display:table-row;
+}
+
+#nav li.active a {
+		color:#00a750;
+		}
