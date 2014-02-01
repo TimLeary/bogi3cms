@@ -50,6 +50,11 @@ if($wArticles != null):
     <?php
 endif;
 ?>
+<div id="messegeBoxDiv">
+<?php
+    $this->renderPartial('contact',array('model'=>$model));
+?>
+</div>
 <script type="text/javascript">
     jQuery(document).ready(function() {
         <?= implode(' ', $jsCalls) ?>

@@ -30,28 +30,47 @@ class SiteController extends Controller
 	 */
 	public function actionIndex()
 	{
-                $this->layout = "main_site";
-                $menuItems = Article::model()->getBasicMenu();
-                
-                $showChilds = Yii::app()->request->getParam('showChilds',null);
-                $showItem = Yii::app()->request->getParam('showItem',null);
-                
-                if(($showChilds == null)AND($showItem == null)){
-                    $firstChild = Article::model()->getVeryFirstChild();
-                    if($firstChild['is_just_parent'] == 1){
-                        $showChilds = $firstChild['article_id'];
-                    } else {
-                        $showItem = $firstChild['article_id'];
-                    }
+            $model=new ContactForm;
+            if(isset($_POST['ContactForm']))
+            {
+                $model->attributes=$_POST['ContactForm'];
+                if($model->validate())
+                {
+                    $name='=?UTF-8?B?'.base64_encode($model->name).'?=';
+                    $subject='=?UTF-8?B?'.base64_encode($model->subject).'?=';
+                    $headers="From: $name <{$model->email}>\r\n".
+                            "Reply-To: {$model->email}\r\n".
+                            "MIME-Version: 1.0\r\n".
+                            "Content-Type: text/plain; charset=UTF-8";
+
+                    mail(Yii::app()->params['adminEmail'],$subject,$model->body,$headers);
+                    Yii::app()->user->setFlash('contact',Yii::t('site','Thank you for contacting us. We will respond to you as soon as possible.'));
+                    $this->refresh();
                 }
-                
-                if($showChilds != null){
-                    $wArticles = Article::model()->getArticlesByParentId($showChilds);
+            }
+            
+            $this->layout = "main_site";
+            $menuItems = Article::model()->getBasicMenu();
+
+            $showChilds = Yii::app()->request->getParam('showChilds',null);
+            $showItem = Yii::app()->request->getParam('showItem',null);
+
+            if(($showChilds == null)AND($showItem == null)){
+                $firstChild = Article::model()->getVeryFirstChild();
+                if($firstChild['is_just_parent'] == 1){
+                    $showChilds = $firstChild['article_id'];
                 } else {
-                    $wArticles = Article::model()->getArticleById($showItem);
+                    $showItem = $firstChild['article_id'];
                 }
-                $this->menuItems = $menuItems;
-		$this->render('index',array('menuItems' => $menuItems,'wArticles'=>$wArticles));
+            }
+
+            if($showChilds != null){
+                $wArticles = Article::model()->getArticlesByParentId($showChilds);
+            } else {
+                $wArticles = Article::model()->getArticleById($showItem);
+            }
+            $this->menuItems = $menuItems;
+            $this->render('index',array('menuItems' => $menuItems,'wArticles'=>$wArticles, 'model'=>$model));
 	}
 
 	/**
