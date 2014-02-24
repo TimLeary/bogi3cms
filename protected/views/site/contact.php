@@ -17,18 +17,16 @@
 )); ?>
         <div id="messegeTitle"><?= Yii::t('site','all_commit_calculate') ?></div>
 	<?php echo $form->errorSummary($model); ?>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'name',array('label' => Yii::t('site','name'))); ?>
-		<?php echo $form->textField($model,'name'); ?>
-		<?php echo $form->error($model,'name'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'email'); ?>
-		<?php echo $form->textField($model,'email'); ?>
-		<?php echo $form->error($model,'email'); ?>
-	</div>
+        <div class="msgUserDatas">
+            <div class="row">
+                <div class="nameLabel"><?php echo $form->labelEx($model,'name',array('label' => Yii::t('site','name'))); ?></div>
+                <div class="mailLabel"><?php echo $form->labelEx($model,'email'); ?></div>
+            </div>
+            <div class="row">
+                <div class="nameInput"><?php echo $form->textField($model,'name'); ?><?php echo $form->error($model,'name'); ?></div>
+                <div class="mailInput"><?php echo $form->textField($model,'email'); ?><?php echo $form->error($model,'email'); ?></div>
+            </div>
+        </div>
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'subject',array('label' => Yii::t('site','subject'))); ?>

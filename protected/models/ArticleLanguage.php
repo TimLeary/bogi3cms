@@ -7,6 +7,7 @@
  * @property integer $article_id
  * @property integer $article_parent_id
  * @property integer $article_language_id
+ * @property integer $article_brother_id
  * @property string $article_desc
  * @property string $article_keywords
  * @property string $link
@@ -18,14 +19,15 @@
  * @property string $article_status
  *
  * The followings are the available model relations:
- * @property Article $articleParent
- * @property Article[] $articles
+ * @property ArticleLanguage $articleBrother
+ * @property ArticleLanguage[] $articles
+ * @property ArticleLanguage $articleParent
+ * @property ArticleLanguage[] $articles1
+ * @property Language $articleLanguage
  */
-class Article extends CActiveRecord
+class ArticleLanguage extends CActiveRecord
 {
-        public $elderParents = array();
-
-        /**
+	/**
 	 * @return string the associated database table name
 	 */
 	public function tableName()
@@ -42,14 +44,14 @@ class Article extends CActiveRecord
 		// will receive user inputs.
 		return array(
 			array('article_title', 'required'),
-			array('article_parent_id, article_language_id, article_seq, is_just_parent, is_just_link', 'numerical', 'integerOnly'=>true),
+			array('article_parent_id, article_language_id, article_brother_id, article_seq, is_just_parent, is_just_link', 'numerical', 'integerOnly'=>true),
 			array('article_desc, article_keywords, link', 'length', 'max'=>500),
 			array('article_title', 'length', 'max'=>255),
 			array('article_status', 'length', 'max'=>7),
 			array('article_text', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('article_id, article_parent_id, article_language_id, article_desc, article_keywords, link, article_title, article_text, article_seq, is_just_parent, is_just_link, article_status', 'safe', 'on'=>'search'),
+			array('article_id, article_parent_id, article_language_id, article_brother_id, article_desc, article_keywords, link, article_title, article_text, article_seq, is_just_parent, is_just_link, article_status', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -61,8 +63,11 @@ class Article extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'articleParent' => array(self::BELONGS_TO, 'Article', 'article_parent_id'),
-			'articles' => array(self::HAS_MANY, 'Article', 'article_parent_id'),
+			'articleBrother' => array(self::BELONGS_TO, 'ArticleLanguage', 'article_brother_id'),
+			'articles' => array(self::HAS_MANY, 'ArticleLanguage', 'article_brother_id'),
+			'articleParent' => array(self::BELONGS_TO, 'ArticleLanguage', 'article_parent_id'),
+			'articles1' => array(self::HAS_MANY, 'ArticleLanguage', 'article_parent_id'),
+			'articleLanguage' => array(self::BELONGS_TO, 'Language', 'article_language_id'),
 		);
 	}
 
@@ -75,6 +80,7 @@ class Article extends CActiveRecord
 			'article_id' => 'Article',
 			'article_parent_id' => 'Article Parent',
 			'article_language_id' => 'Article Language',
+			'article_brother_id' => 'Article Brother',
 			'article_desc' => 'Article Desc',
 			'article_keywords' => 'Article Keywords',
 			'link' => 'Link',
@@ -108,6 +114,7 @@ class Article extends CActiveRecord
 		$criteria->compare('article_id',$this->article_id);
 		$criteria->compare('article_parent_id',$this->article_parent_id);
 		$criteria->compare('article_language_id',$this->article_language_id);
+		$criteria->compare('article_brother_id',$this->article_brother_id);
 		$criteria->compare('article_desc',$this->article_desc,true);
 		$criteria->compare('article_keywords',$this->article_keywords,true);
 		$criteria->compare('link',$this->link,true);
@@ -122,13 +129,29 @@ class Article extends CActiveRecord
 			'criteria'=>$criteria,
 		));
 	}
+
+	/**
+	 * Returns the static model of the specified AR class.
+	 * Please note that you should have this exact method in all your CActiveRecord descendants!
+	 * @param string $className active record class name.
+	 * @return ArticleLanguage the static model class
+	 */
+	public static function model($className=__CLASS__)
+	{
+		return parent::model($className);
+	}
         
         public function getArticlesByParentId($parentId = null, $articleStatus = 'active', $languageId = null){
             $articles = Yii::app()->db->createCommand()
                 ->select(array('*'))
                 ->from('article a')
-                ->where('a.article_status = :articleStatus',array(':articleStatus' => $articleStatus))
                 ->order(array('a.article_seq ASC'));
+            
+            if($articleStatus == 'all'){
+                $articles->where('a.article_status != \'inedit\'');
+            } else {
+                $articles->where('a.article_status = :articleStatus',array(':articleStatus' => $articleStatus));
+            }
             
             if($parentId == null){
                 $articles->andWhere('a.article_parent_id is null');
@@ -162,7 +185,7 @@ class Article extends CActiveRecord
                 return $this->elderParents;
             }
         }
-
+        
         public function getARArticlesByParentId($parentId = null, $articleStatus = 'active'){
             $criteria = new CDbCriteria();
             $criteria->alias = 'a';
@@ -176,17 +199,6 @@ class Article extends CActiveRecord
             $criteria->order = 'a.article_seq ASC';
             return Article::model()->findAll($criteria);
         }
-
-        /**
-	 * Returns the static model of the specified AR class.
-	 * Please note that you should have this exact method in all your CActiveRecord descendants!
-	 * @param string $className active record class name.
-	 * @return Article the static model class
-	 */
-	public static function model($className=__CLASS__)
-	{
-		return parent::model($className);
-	}
         
         public function getLastSeq($parentId = null){
             $articles = Yii::app()->db->createCommand()
@@ -203,7 +215,7 @@ class Article extends CActiveRecord
             return $articles->queryRow();
         }
         
-        public function getBasicMenu($parentId = null){
+        public function getBasicMenu($parentId = null,$languageId = null){
             $returnArray = array();
             $menu = Yii::app()->db->createCommand()
                 ->select(array('article_id','article_seq','link','article_title','is_just_parent','is_just_link','article_status'))
@@ -216,6 +228,10 @@ class Article extends CActiveRecord
                 $menu->andWhere('article_parent_id = :articleParentId', array(':articleParentId' => $parentId));
             }
             
+            if($languageId == null){
+                $menu->andWhere('article_language_id = :languageId',array(':languageId'=>$languageId));
+            }
+            
             $menu->order(array('article_seq ASC'));
             
             $menuItems = $menu->queryAll();
@@ -223,7 +239,7 @@ class Article extends CActiveRecord
             $i = 0;
             foreach($menuItems as $item){
                 $returnArray[$i] = $item;
-                $returnArray[$i]['childs'] = self::getBasicMenu($item['article_id']);
+                $returnArray[$i]['childs'] = self::getBasicMenu($item['article_id'],$languageId);
                 $i++;
             }
             
