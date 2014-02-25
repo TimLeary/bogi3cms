@@ -87,3 +87,55 @@ Stack trace:
 REQUEST_URI=/bogi3cms/index.php/articleLanguage/create?parentId=&language=hu
 HTTP_REFERER=http://localhost/bogi3cms/index.php/articleLanguage/index?language=hu
 ---
+2014/02/25 22:37:08 [error] [exception.CHttpException.400] exception 'CHttpException' with message 'Your request is invalid.' in /var/www/yii/framework/web/CController.php:336
+Stack trace:
+#0 /var/www/yii/framework/web/CController.php(309): CController->invalidActionParams(Object(CInlineAction))
+#1 /var/www/yii/framework/web/CController.php(286): CController->runAction(Object(CInlineAction))
+#2 /var/www/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#3 /var/www/yii/framework/web/CWebApplication.php(282): CController->run('update')
+#4 /var/www/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('articleLanguage...')
+#5 /var/www/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#6 /var/www/bogi3cms/index.php(15): CApplication->run()
+#7 {main}
+REQUEST_URI=/bogi3cms/index.php/articleLanguage/update/
+HTTP_REFERER=http://localhost/bogi3cms/index.php/ArticleLanguage
+---
+2014/02/25 22:43:35 [error] [php] Array to string conversion (/var/www/yii/framework/db/CDbCommand.php:275)
+Stack trace:
+#0 /var/www/yii/framework/db/schema/CDbCommandBuilder.php(100): CMysqlCommandBuilder->bindValues()
+#1 /var/www/yii/framework/db/ar/CActiveRecord.php(1350): CMysqlCommandBuilder->createFindCommand()
+#2 /var/www/yii/framework/db/ar/CActiveRecord.php(1456): ArticleLanguage->query()
+#3 /var/www/bogi3cms/protected/controllers/ArticleLanguageController.php(49): ArticleLanguage->find()
+#4 /var/www/yii/framework/web/actions/CInlineAction.php(49): ArticleLanguageController->actionCreate()
+#5 /var/www/yii/framework/web/CController.php(308): CInlineAction->runWithParams()
+#6 /var/www/yii/framework/web/CController.php(286): ArticleLanguageController->runAction()
+#7 /var/www/yii/framework/web/CController.php(265): ArticleLanguageController->runActionWithFilters()
+#8 /var/www/yii/framework/web/CWebApplication.php(282): ArticleLanguageController->run()
+#9 /var/www/yii/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#10 /var/www/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#11 /var/www/bogi3cms/index.php(15): CWebApplication->run()
+REQUEST_URI=/bogi3cms/index.php/articleLanguage/create?parentId=&language=hu
+in /var/www/bogi3cms/protected/controllers/ArticleLanguageController.php (49)
+in /var/www/bogi3cms/index.php (15)
+2014/02/25 22:45:38 [error] [php] Undefined variable: 1 (/var/www/bogi3cms/protected/controllers/ArticleLanguageController.php:49)
+Stack trace:
+#0 /var/www/yii/framework/web/CController.php(286): ArticleLanguageController->runAction()
+#1 /var/www/yii/framework/web/CController.php(265): ArticleLanguageController->runActionWithFilters()
+#2 /var/www/yii/framework/web/CWebApplication.php(282): ArticleLanguageController->run()
+#3 /var/www/yii/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#4 /var/www/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#5 /var/www/bogi3cms/index.php(15): CWebApplication->run()
+REQUEST_URI=/bogi3cms/index.php/articleLanguage/create?parentId=&language=hu
+in /var/www/bogi3cms/protected/controllers/ArticleLanguageController.php (49)
+in /var/www/bogi3cms/index.php (15)
+2014/02/25 22:46:24 [error] [php] Undefined variable: languageId (/var/www/bogi3cms/protected/controllers/ArticleLanguageController.php:60)
+Stack trace:
+#0 /var/www/yii/framework/web/CController.php(286): ArticleLanguageController->runAction()
+#1 /var/www/yii/framework/web/CController.php(265): ArticleLanguageController->runActionWithFilters()
+#2 /var/www/yii/framework/web/CWebApplication.php(282): ArticleLanguageController->run()
+#3 /var/www/yii/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#4 /var/www/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#5 /var/www/bogi3cms/index.php(15): CWebApplication->run()
+REQUEST_URI=/bogi3cms/index.php/articleLanguage/create?parentId=&language=hu
+in /var/www/bogi3cms/protected/controllers/ArticleLanguageController.php (60)
+in /var/www/bogi3cms/index.php (15)
