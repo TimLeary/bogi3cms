@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <script src="http://code.jquery.com/jquery.min.js" type="text/javascript"></script>
+        <script src="js/jquery.backstretch.min.js" type="text/javascript"></script>
+        <link rel="stylesheet" type="text/css" href="css/screen.css" />
+	<link rel="stylesheet" type="text/css" href="css/print.css" />
+        <!--[if lt IE 8]>
+	<link rel="stylesheet" type="text/css" href="css/ie.css" media="screen, projection" />
+	<![endif]-->
+        <link rel="stylesheet" type="text/css" href="css/main.css" />
+	<link rel="stylesheet" type="text/css" href="css/form.css" />
+        <meta name="viewport" content="width=device-width">
+    </head>
+    <body>
+    
+    <script type="text/javascript">
+		
+		$(function(){
+			//menu kezeles
+			$('.subMenuBtn').bind( "click", function(e) {
+				var elem = $(this);				
+				elem.next().toggle();
+			});
+			
+			//hatterkepek cserelgetese
+			$.backstretch([
+			"images/bg_test.jpg",
+//			"images/bg_logo_shape.png",
+			"http://dl.dropbox.com/u/515046/www/cheers.jpg"
+			], {duration: 3000, fade: 750});
+		});
+	</script>
+    
+        <div id="backstretch">
+            <div id="background-shape">
+                <div class="container">
+                    <div id="logoHolder" class="span-6 last textured">
+                        <div id="monkeyLogo">
+
+                        </div>
+                    </div>
+                    <div id="headInfo" class="span-8 last">
+                        <div id="headInfosHead">
+                            <div>
+                                <h3>MONKEY ESEMÉNYEK</h3>
+                            </div>
+                        </div>
+                        <div id="headInfosBody">
+                            <ul>
+                                <li><div class="eventListItem"></div></li>
+                                <li><div class="eventListItem"></div></li>
+                                <li><div class="eventListItem"></div></li>
+                                <li><div class="eventListItem"></div></li>
+                                <li><div class="eventListItem"></div></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="clear"></div>
+	                    <div class="span-6 textured top-shift">
+                            <ul>
+                                <li>
+	                                <div class="menuListItem subMenuBtn">Gomb 1</div>
+                                    <ul class="subMenu">
+                                        <li><div class="menuListItem subMenuItem">algomb 1</div></li>
+                                        <li><div class="menuListItem subMenuItem">algomb 2</div></li>
+                                        <li><div class="menuListItem subMenuItem">algomb 3</div></li>
+                                        <li><div class="menuListItem subMenuItem">algomb 4</div></li>
+                                        <li><div class="menuListItem subMenuItem">algomb 5</div></li>
+                                    </ul>
+                                </li>
+                                <li><div href="#" class="menuListItem">Gomb 2</div></li>
+                                <li><div href="#" class="menuListItem">Gomb 3</div></li>
+                                <li><div href="#" class="menuListItem">Gomb 4</div></li>
+                                <li>
+                                	<div class="menuListItem subMenuBtn">Gomb 5</div>
+                                    <ul class="subMenu">
+                                        <li><div class="menuListItem subMenuItem">algomb 1</div></li>
+                                        <li><div class="menuListItem subMenuItem">algomb 2</div></li>
+                                        <li><div class="menuListItem subMenuItem">algomb 3</div></li>
+                                        <li><div class="menuListItem subMenuItem">algomb 4</div></li>
+                                        <li><div class="menuListItem subMenuItem">algomb 5</div></li>
+                                    </ul>
+                                </li>
+                            </ul>
+    	                </div>
+                    <div class="span-18 textured top-shift last">
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                    </div>
+                    <div class="span-5 last">
+
+                    </div>
+                    <div class="clear"></div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

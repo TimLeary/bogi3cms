@@ -3,6 +3,43 @@
 class ArticleLanguageController extends Controller
 {
         public $layout='//layouts/column2';
+        
+                /**
+	 * @return array action filters
+	 */
+	public function filters()
+	{
+		return array(
+			'accessControl', // perform access control for CRUD operations
+			//'postOnly + delete', // we only allow deletion via POST request
+		);
+	}
+        
+	/**
+	 * Specifies the access control rules.
+	 * This method is used by the 'accessControl' filter.
+	 * @return array access control rules
+	 */
+	public function accessRules()
+	{
+            return array(
+                array('allow',  // allow all users to perform 'index' and 'view' actions
+                        'actions'=>array(''),
+                        'users'=>array('*'),
+                ),
+                array('allow', // allow authenticated user to perform 'create' and 'update' actions
+                        'actions'=>array(''),
+                        'expression' => 'Yii::app()->user->isGuest() === 0',
+                ),
+                array('allow', // allow admin user to perform 'admin' and 'delete' actions
+                        'actions'=>array('index','create','update','changeSort','imageUpload','fileUpload'),
+                        'expression' => 'Yii::app()->user->isAdmin() === 1',
+                ),
+                array('deny',  // deny all users
+                        'users'=>array('*'),
+                ),
+            );
+	}
     
 	public function actionIndex(){
             $actualLanguage = Yii::app()->request->getParam('language',null);
@@ -77,9 +114,9 @@ class ArticleLanguageController extends Controller
             // Uncomment the following line if AJAX validation is needed
             // $this->performAjaxValidation($model);
 
-            if(isset($_POST['Article']))
+            if(isset($_POST['ArticleLanguage']))
             {
-                    $model->attributes=$_POST['Article'];
+                    $model->attributes=$_POST['ArticleLanguage'];
                     if($model->save()){
                         if(($model->article_parent_id != null)AND($model->article_status == 'active')){
                             $parentModel = ArticleLanguage::model()->find('article_id = :parentId',array(':parentId'=>$model->article_parent_id));
@@ -111,6 +148,78 @@ class ArticleLanguageController extends Controller
             }
             
         }
+        
+        public function actionFileUpload(){
+            $this->layout = '//layouts/ajax';
+            //header('Content-type: application/json');
+            $uploadPath = realpath(Yii::app()->basePath . '/../uploads/article/');
+            //var_dump($uploadPath);
+            $uploadUrl = Yii::app()->baseUrl.'/uploads/article/';
+            $file = CUploadedFile::getInstanceByName('file');
+            //var_dump($this); exit();
+            if ($file instanceof CUploadedFile) {
+                    $fileName = $file->name;
+                    
+                    $path = $uploadPath.DIRECTORY_SEPARATOR.$fileName;
+                    
+                    if (file_exists($path) || !$file->saveAs($path)) {
+                            echo CJSON::encode(
+                                    array('error'=>'Could not save file or file exists: "'.$path.'".')
+                            ); Yii::app()->end();
+                    }
+                    $attributeUrl = $uploadUrl.$fileName;
+                    $data = array(
+                            'filelink'=>$attributeUrl,
+                            'filename' => $file->name
+                    );
+                    
+                    echo CJSON::encode($data);
+                    Yii::app()->end();
+            } else {
+                    echo CJSON::encode(
+                        array('error'=>'Could not upload file.')
+                    ); Yii::app()->end();
+            }
+        
+        }
+        
+        public function actionImageUpload(){
+            $this->layout = '//layouts/ajax';
+            //header('Content-type: application/json');
+            $uploadPath = realpath(Yii::app()->basePath . '/../images/uploaded/original/');
+            //var_dump($uploadPath);
+            $uploadUrl = Yii::app()->baseUrl.'/images/uploaded/original/';
+            $file = CUploadedFile::getInstanceByName('file');
+            //var_dump($this); exit();
+            if ($file instanceof CUploadedFile) {
+                    if (!in_array(strtolower($file->getExtensionName()),array('gif','png','jpg','jpeg'))) {
+                            echo CJSON::encode(
+                                    array('error'=>'Invalid file extension '. $file->getExtensionName().'.')
+                            ); Yii::app()->end();
+                    }
+                    $fileName=trim(md5(time().uniqid(rand(),true))).'.'.$file->getExtensionName();
+                    
+                    $path = $uploadPath.DIRECTORY_SEPARATOR.$fileName;
+                    
+                    if (file_exists($path) || !$file->saveAs($path)) {
+                            echo CJSON::encode(
+                                    array('error'=>'Could not save file or file exists: "'.$path.'".')
+                            ); Yii::app()->end();
+                    }
+                    $attributeUrl=$uploadUrl.$fileName;
+                    $data = array(
+                            'filelink'=>$attributeUrl,
+                    );
+                    echo CJSON::encode($data);
+                    Yii::app()->end();
+            } else {
+                    echo CJSON::encode(
+                        array('error'=>'Could not upload file.')
+                    ); Yii::app()->end();
+            }
+        
+        }
+        
         
         public function loadModel($id){
 		$model= ArticleLanguage::model()->findByPk($id);

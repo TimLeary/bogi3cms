@@ -4,14 +4,14 @@
     $breadcrumbArray = array();
     if($wElderParents != null): ?>
         <div id="articleBreadcrumb">
-            <a href="<?= Yii::app()->createUrl('article/index',array('parentId'=>null)) ?>">Article base</a> > 
+            <a href="<?= Yii::app()->createUrl('articleLanguage/index',array('parentId'=>null)) ?>">Article base</a> > 
         <?php
         $parentCounter = 0;
         $parentNum = count($wElderParents);
         foreach ($wElderParents as $wElderParent): ?>
-            <?php if(++$parentCounter != $parentNum): ?>
-            <a href="<?= Yii::app()->createUrl('article/index',array('parentId'=>key($wElderParent))) ?>"><?= ucfirst($wElderParent[key($wElderParent)]) ?></a> > <?php
-            endif;
+            <?php //if(++$parentCounter != $parentNum): ?>
+                <a href="<?= Yii::app()->createUrl('articleLanguage/index',array('parentId'=>key($wElderParent))) ?>"><?= ucfirst($wElderParent[key($wElderParent)]) ?></a> > <?php
+            // endif;
         endforeach; ?>
         </div>
         <?php
@@ -32,13 +32,13 @@
             $articleShowList[$wArticle['article_id']] .= '<div class="title">';
             $articleShowList[$wArticle['article_id']] .= $wArticle['article_title'];
             $articleShowList[$wArticle['article_id']] .= '</div>';
-            $articleShowList[$wArticle['article_id']] .= '<div class="editIt"><a href="'.Yii::app()->createUrl('article/update',array('id'=>$wArticle['article_id'])).'"></a></div>';
+            $articleShowList[$wArticle['article_id']] .= '<div class="editIt"><a href="'.Yii::app()->createUrl('articleLanguage/update',array('id'=>$wArticle['article_id'])).'"></a></div>';
             if(($wArticle['is_just_parent']==0)OR($wArticle['is_just_parent']=="")){
-                $articleShowList[$wArticle['article_id']] .= '<div class="parentIt"><a href="'.Yii::app()->createUrl('article/index',array('parentId'=>$wArticle['article_id'])).'"></a></div>';
+                $articleShowList[$wArticle['article_id']] .= '<div class="parentIt"><a href="'.Yii::app()->createUrl('articleLanguage/index',array('parentId'=>$wArticle['article_id'])).'"></a></div>';
             } else {
-                $articleShowList[$wArticle['article_id']] .= '<div class="showChildsIt"><a href="'.Yii::app()->createUrl('article/index',array('parentId'=>$wArticle['article_id'])).'"></a></div>';
+                $articleShowList[$wArticle['article_id']] .= '<div class="showChildsIt"><a href="'.Yii::app()->createUrl('articleLanguage/index',array('parentId'=>$wArticle['article_id'])).'"></a></div>';
             }
-            $articleShowList[$wArticle['article_id']] .= '<div class="deleteIt"><a href="'.Yii::app()->createUrl('article/delete',array('id' => $wArticle['article_id'])).'"></a></div>';
+            $articleShowList[$wArticle['article_id']] .= '<div class="deleteIt"><a href="'.Yii::app()->createUrl('articleLanguage/delete',array('id' => $wArticle['article_id'])).'"></a></div>';
             $articleShowList[$wArticle['article_id']] .= '</div>';
         }
     }

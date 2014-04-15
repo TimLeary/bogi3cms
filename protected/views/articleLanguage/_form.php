@@ -55,8 +55,8 @@
                     'model' => $model,
                     'attribute' => 'article_text',
                     'options' => array(
-                        'imageUpload'=>Yii::app()->createUrl('article/imageUpload'),
-                        'fileUpload' =>Yii::app()->createUrl('article/fileUpload'),
+                        'imageUpload'=>Yii::app()->createUrl('articleLanguage/imageUpload'),
+                        'fileUpload' =>Yii::app()->createUrl('articleLanguage/fileUpload'),
                     )
                 )); ?>
                 <?php echo $form->error($model,'article_text'); ?>
