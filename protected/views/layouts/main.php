@@ -4,7 +4,7 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<meta name="language" content="en" />
-
+        <meta name="viewport" content="width=device-width" />
 	<!-- blueprint CSS framework -->
 	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/screen.css" media="screen, projection" />
 	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/print.css" media="print" />
@@ -24,14 +24,78 @@
             $cs->registerScriptFile(Yii::app()->baseUrl.'/js/jquery.mousewheel-3.0.6.pack.js');
             $cs->registerCssFile(Yii::app()->baseUrl.'/js/fancyBox/jquery.fancybox.css');
             $cs->registerScriptFile(Yii::app()->baseUrl.'/js/fancyBox/jquery.fancybox.js');
+            $cs->registerScriptFile(Yii::app()->baseUrl.'/js/jquery.backstretch.min.js');
         ?>
 	<title><?php echo CHtml::encode($this->pageTitle); ?></title>
 </head>
 
 <body>
 
-<div class="container" id="page">
 
+<div id="backstretch">
+    <div id="background-shape">
+        <div class="container">
+            <div id="logoHolder" class="span-6 last textured">
+                <div id="monkeyLogo">
+
+                </div>
+            </div>
+            <div id="headInfo" class="span-8 last">
+                <div id="headInfosHead">
+                    <div>
+                        <h3>MONKEY ESEMÉNYEK</h3>
+                    </div>
+                </div>
+                <div id="headInfosBody">
+                    <ul>
+                        <li><div class="eventListItem"></div></li>
+                        <li><div class="eventListItem"></div></li>
+                        <li><div class="eventListItem"></div></li>
+                        <li><div class="eventListItem"></div></li>
+                        <li><div class="eventListItem"></div></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="clear"></div>
+                    <div class="span-6 textured top-shift">
+                    <ul>
+                        <li>
+                                <div class="menuListItem subMenuBtn">Gomb 1</div>
+                            <ul class="subMenu">
+                                <li><div class="menuListItem subMenuItem">algomb 1</div></li>
+                                <li><div class="menuListItem subMenuItem">algomb 2</div></li>
+                                <li><div class="menuListItem subMenuItem">algomb 3</div></li>
+                                <li><div class="menuListItem subMenuItem">algomb 4</div></li>
+                                <li><div class="menuListItem subMenuItem">algomb 5</div></li>
+                            </ul>
+                        </li>
+                        <li><div href="#" class="menuListItem">Gomb 2</div></li>
+                        <li><div href="#" class="menuListItem">Gomb 3</div></li>
+                        <li><div href="#" class="menuListItem">Gomb 4</div></li>
+                        <li>
+                                <div class="menuListItem subMenuBtn">Gomb 5</div>
+                            <ul class="subMenu">
+                                <li><div class="menuListItem subMenuItem">algomb 1</div></li>
+                                <li><div class="menuListItem subMenuItem">algomb 2</div></li>
+                                <li><div class="menuListItem subMenuItem">algomb 3</div></li>
+                                <li><div class="menuListItem subMenuItem">algomb 4</div></li>
+                                <li><div class="menuListItem subMenuItem">algomb 5</div></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            <div class="span-18 textured top-shift last">
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+            </div>
+            <div class="span-5 last">
+
+            </div>
+            <div class="clear"></div>
+        </div>
+    </div>
+</div>
+        <div class="clear"></div>
+        <div class="container" id="page">
 	<div id="header">
 		<div id="logo"><?php echo CHtml::encode(Yii::app()->name); ?></div>
 	</div><!-- header -->
@@ -56,12 +120,6 @@
 	<?php echo $content; ?>
 
 	<div class="clear"></div>
-
-	<div id="footer">
-		Copyright &copy; <?php echo date('Y'); ?> by My Company.<br/>
-		All Rights Reserved.<br/>
-		<?php echo Yii::powered(); ?>
-	</div><!-- footer -->
 
 </div><!-- page -->
 
