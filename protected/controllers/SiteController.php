@@ -4,7 +4,7 @@ class SiteController extends Controller
 {
     
         public $menuItems;
-        
+
         /**
 	 * Declares class-based actions.
 	 */
@@ -50,13 +50,16 @@ class SiteController extends Controller
             }
             
             $this->layout = "main_site";
-            $menuItems = Article::model()->getBasicMenu();
+            
+            $language = Yii::app()->request->getParam('language',null);
+            $languageId = Language::model()->getLanguageId($language);
+            $menuItems = ArticleLanguage::model()->getBasicMenu(null, $languageId);
 
             $showChilds = Yii::app()->request->getParam('showChilds',null);
             $showItem = Yii::app()->request->getParam('showItem',null);
 
             if(($showChilds == null)AND($showItem == null)){
-                $firstChild = Article::model()->getVeryFirstChild();
+                $firstChild = ArticleLanguage::model()->getVeryFirstChild($languageId);
                 if($firstChild['is_just_parent'] == 1){
                     $showChilds = $firstChild['article_id'];
                 } else {
@@ -69,11 +72,86 @@ class SiteController extends Controller
             } else {
                 $wArticles = Article::model()->getArticleById($showItem);
             }
-            $this->menuItems = $menuItems;
+            $this->menuItems = $this->generateMenuStr($menuItems);
             $this->render('index',array('menuItems' => $menuItems,'wArticles'=>$wArticles, 'model'=>$model));
 	}
+        
+        protected function generateMenuStr($menuItems){
+            $menuLinks = $this->menuItemsToStr($menuItems);
+            return $menuLinks;
+        }
+        
+        protected function menuItemsPrepare($items){
+            $returnArray = array();
+            foreach ($items as $item){
+                $tmpItem = array();
+                $tmpItem['label'] = $item['article_title'];
+                $tmpUrlArray = array();
+                if(($item['is_just_parent']==1)AND(($item['is_just_link'] == 0)OR($item['is_just_link'] == null))){
+                    $tmpItem['url'] = Yii::app()->createUrl('site/index',array('showChilds'=>$item['article_id']));
+                } else if(($item['is_just_parent']==1)AND($item['is_just_link'] == 1)){
+                    $tmpSubItems = $this->menuItemsPrepare($item['childs']);
+                    $tmpItem['items'] = $tmpSubItems;
+                } else if (($item['is_just_parent']==0)AND(($item['is_just_link'] == 0)OR($item['is_just_link'] == null))){
+                    $tmpItem['url'] = Yii::app()->createUrl('site/index',array('showChilds'=>$item['article_id']));
+                } else if (($item['is_just_parent']==0)AND($item['is_just_link'] == 1)){
+                    $tmpItem['url'] = $item['link'];
+                }
 
-	/**
+                $returnArray[] = $tmpItem;
+
+            }
+            
+            return $returnArray;
+        }
+        
+        protected function menuItemsToStr($items, $hasParent = false){
+            $returnStr = "";
+            $addDivClass = "";
+            $addUlClass = "";
+            
+            if($hasParent == true){
+                $addUlClass = ' class="subMenu" ';
+                $addDivClass = " subMenuItem";
+            }
+            
+            $returnStr .= '<ul'.$addUlClass.'>';
+
+            foreach ($items as $item){
+                
+                
+                if((is_array($item['childs']))AND(count($item['childs'])>=1)AND($item['is_just_link'] == 1)){
+                    $divStr = '<div class="menuListItem subMenuBtn">';
+                    $divStr .= $item['article_title'];
+                    $divStr .= '</div>';
+                    
+                    $returnStr .= '<li>'.$divStr;
+                    $childStr = $this->menuItemsToStr($item['childs'],true);
+                    $returnStr .= $childStr;
+                    $returnStr .= '</li>';
+                } else {
+                    $divStr = "";
+                    if($item['is_just_parent']==1){
+                        $divStr .= "<div href=\"".Yii::app()->createUrl('site/index',array('showChilds'=>$item['article_id']))."\" class=\"menuListItem".$addDivClass."\">";
+                    }elseif($item['is_just_link'] == 1) {
+                        $divStr .= "<div href=\"".$item['link']."\" class=\"menuListItem".$addDivClass."\">";
+                    } else {
+                        $divStr .= "<div href=\"".Yii::app()->createUrl('site/index',array('showItem'=>$item['article_id']))."\" class=\"menuListItem".$addDivClass."\">";
+                    }
+                    
+                    $divStr .= $item['article_title'];
+                    $divStr .= '</div>';
+                    
+                    $returnStr .= '<li>'.$divStr.'</li>';
+                }
+                
+            }
+            $returnStr .= '</ul>';
+            
+            return $returnStr;
+        }
+        
+        /**
 	 * This is the action to handle external exceptions.
 	 */
 	public function actionError()

@@ -25,64 +25,96 @@
             $cs->registerScriptFile(Yii::app()->baseUrl.'/js/jquery.mousewheel-3.0.6.pack.js');
             $cs->registerCssFile(Yii::app()->baseUrl.'/js/fancyBox/jquery.fancybox.css');
             $cs->registerScriptFile(Yii::app()->baseUrl.'/js/fancyBox/jquery.fancybox.js');
+            $cs->registerScriptFile(Yii::app()->baseUrl.'/js/jquery.backstretch.min.js');
         ?>
         
 	<title><?php echo CHtml::encode($this->pageTitle); ?></title>
 </head>
-<?php
-function menuItemForItemArray($items){
-    $returnArray = array();
-    foreach ($items as $item){
-        $tmpItem = array();
-        $tmpItem['label'] = $item['article_title'];
-        $tmpUrlArray = array();
-        if(($item['is_just_parent']==1)AND(($item['is_just_link'] == 0)OR($item['is_just_link'] == null))){
-            $tmpUrlArray = array('/site/index','showChilds'=>$item['article_id']);
-            $tmpItem['url'] = $tmpUrlArray;
-        } else if(($item['is_just_parent']==1)AND($item['is_just_link'] == 1)){
-            $tmpSubItems = menuItemForItemArray($item['childs']);
-            $tmpItem['items'] = $tmpSubItems['items'];
-        } else if (($item['is_just_parent']==0)AND(($item['is_just_link'] == 0)OR($item['is_just_link'] == null))){
-            $tmpUrlArray = array('/site/index','showItem'=>$item['article_id']);
-            $tmpItem['url'] = $tmpUrlArray;
-        } else if (($item['is_just_parent']==0)AND($item['is_just_link'] == 1)){
-            $tmpItem['url'] = $item['link'];
-        }
-        
-        $returnArray['items'][] = $tmpItem;
-        
-    }
-    return $returnArray;
-}
-
-
-$itemsMenu = menuItemForItemArray($this->menuItems);
-?>
 <body>
-<div id="headerContent">
-	<div class="container" id="headerMenu">
-		<div id="mainMbMenu">
-			<?php $this->widget('application.extensions.mbmenu.MbMenu',$itemsMenu); ?>
-		</div>
-	</div>
+<div id="backstretch">
+    <div id="background-shape">
+        <div class="container">
+            <div id="logoHolder" class="span-6 last textured">
+                <div id="monkeyLogo">
+
+                </div>
+            </div>
+            <div id="headInfo" class="span-8 last">
+                <div id="headInfosHead">
+                    <div>
+                        <h3>MONKEY ESEMÉNYEK</h3>
+                    </div>
+                </div>
+                <div id="headInfosBody">
+                    <ul>
+                        <li><div class="eventListItem"></div></li>
+                        <li><div class="eventListItem"></div></li>
+                        <li><div class="eventListItem"></div></li>
+                        <li><div class="eventListItem"></div></li>
+                        <li><div class="eventListItem"></div></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="clear"></div>
+                    <div class="span-6 textured top-shift">
+                        <?= $this->menuItems ?>
+                        <!--
+                            <ul>
+                                <li>
+                                    <div class="menuListItem subMenuBtn">Gomb 1</div>
+                                    <ul class="subMenu">
+                                        <li><div class="menuListItem subMenuItem">algomb 1</div></li>
+                                        <li><div class="menuListItem subMenuItem">algomb 2</div></li>
+                                        <li><div class="menuListItem subMenuItem">algomb 3</div></li>
+                                        <li><div class="menuListItem subMenuItem">algomb 4</div></li>
+                                        <li><div class="menuListItem subMenuItem">algomb 5</div></li>
+                                    </ul>
+                                </li>
+                                <li><div href="#" class="menuListItem">Gomb 2</div></li>
+                                <li><div href="#" class="menuListItem">Gomb 3</div></li>
+                                <li><div href="#" class="menuListItem">Gomb 4</div></li>
+                                <li>
+                                    <div class="menuListItem subMenuBtn">Gomb 5</div>
+                                    <ul class="subMenu">
+                                        <li><div class="menuListItem subMenuItem">algomb 1</div></li>
+                                        <li><div class="menuListItem subMenuItem">algomb 2</div></li>
+                                        <li><div class="menuListItem subMenuItem">algomb 3</div></li>
+                                        <li><div class="menuListItem subMenuItem">algomb 4</div></li>
+                                        <li><div class="menuListItem subMenuItem">algomb 5</div></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        -->
+                </div>
+            <div class="span-18 textured top-shift last">
+                <?php echo $content; ?>
+            </div>
+            <div class="span-5 last"></div>
+            <div class="clear"></div>
+        </div>
+    </div>
 </div>
-<div class="container" id="page">
+<div class="clear"></div>
+<script type="text/javascript">
+    $(function(){
+        $('.subMenuBtn').bind( "click", function(e) {
+            var elem = $(this);				
+            elem.next().toggle();
+        });
 
-	<div id="header">
-		<div id="logo"><?php //echo CHtml::encode(Yii::app()->name); ?></div>
-	</div><!-- header -->
+        $("div.menuListItem").click(function(){
+            // console.log($(this).attr("href"));
+            if($(this).attr("href") !== undefined){
+                window.location = $(this).attr("href");
+                return false;
+            }
+        });
 
-	<?php echo $content; ?>
-
-	<div class="clear"></div>
-
-	<div id="footer">
-		Copyright &copy; <?php echo date('Y'); ?> by My Company.<br/>
-		All Rights Reserved.<br/>
-		<?php echo Yii::powered(); ?>
-	</div><!-- footer -->
-
-</div><!-- page -->
-
+        $.backstretch([
+            "<?= Yii::app()->baseUrl ?>/images/bg_test.jpg",
+            "http://dl.dropbox.com/u/515046/www/cheers.jpg"
+        ], {duration: 3000, fade: 750});
+    });
+</script>
 </body>
 </html>

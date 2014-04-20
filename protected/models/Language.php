@@ -136,4 +136,20 @@ class Language extends CActiveRecord
                 ->limit(1);
             return $language->queryRow();
         }
+        
+        public function getLanguageId($language = null){
+            $languageSelect = Yii::app()->db->createCommand()
+                ->select('language_id')
+                ->from('language');
+            
+            if($language !== null){
+                $languageSelect->where('language_code = :languageCode',array(':languageCode'=>$language));
+            } else {
+                $languageSelect->where('language_status = :languageStatus',array(':languageStatus'=>'default'));
+            }
+            
+            $wLanguage = $languageSelect->queryRow();
+            
+            return $wLanguage['language_id'];
+        }
 }

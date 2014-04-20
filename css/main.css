@@ -353,3 +353,148 @@ div.subMenuItem {
 .top-shift{
     margin-top: 5px;
 }
+
+
+ul#articleShowList{
+    list-style-type: none;
+}
+
+ul#articleShowList li div.articleList{
+    display: table;
+    width: 100%;
+    background-color: #C9E0ED;
+    padding: 5px;
+}
+
+ul#articleShowList li div.articleList div{
+    display: table-cell;
+}
+
+ul#articleShowList li div.articleList div.moveIt{
+    background-image: url("../images/admin/glyphicons-halflings.png");
+    width: 18px;
+    height: 18px;
+    background-position-x: 17px;
+    background-position-y: 18px;
+}
+
+ul#articleShowList li div.articleList div.title{
+    padding-left: 5px;
+    line-height: 18px;
+}
+
+ul#articleShowList li div.articleList div.editIt,
+ul#articleShowList li div.articleList div.parentIt,
+ul#articleShowList li div.articleList div.showChildsIt,
+ul#articleShowList li div.articleList div.deleteIt{
+    width: 18px;
+    height: 18px;
+}
+
+ul#articleShowList li div.articleList div.editIt a{
+    display: block;
+    width: 100%;
+    height: 100%;
+    background-image: url("../images/admin/glyphicons-halflings.png");
+    background-position-x: -1px;
+    background-position-y: 90px;
+}
+
+ul#articleShowList li div.articleList div.parentIt a{
+    display: block;
+    width: 100%;
+    height: 100%;
+    background-image: url("../images/admin/glyphicons-halflings.png");
+    background-position-x: -408px;
+    background-position-y: 42px;
+}
+
+ul#articleShowList li div.articleList div.showChildsIt a{
+    display: block;
+    width: 100%;
+    height: 100%;
+    background-image: url("../images/admin/glyphicons-halflings.png");
+    background-position-x: -384px;
+    background-position-y: 42px;
+}
+
+ul#articleShowList li div.articleList div.deleteIt a{
+    display: block;
+    width: 100%;
+    height: 100%;
+    background-image: url("../images/admin/glyphicons-halflings.png");
+    background-position-x: -69px;
+    background-position-y: 42px;
+}
+
+
+#messegeBoxDiv{
+    margin-left:20px;
+    margin-right:20px;
+    background-color:#f4f4f4;
+    display:block;
+    margin-bottom:20px;
+}
+#messegeTitle{
+    text-align:center;
+    width:100%;
+    color:#FFF;
+    background-color:#c2c2c2;
+    padding:2px 0px;
+    font-size: 12px;
+    text-transform: uppercase;
+}	
+
+#messegeBoxDiv div.row {
+    margin-left:20px;
+    margin-right:20px;
+}
+
+#messegeBoxDiv div.row.buttons input {
+    color:#FFF;
+    background-color:#00a9a2;
+    padding:3px 10px;
+    font-size: 14px;
+    text-transform: uppercase;
+    border: none;
+}
+
+#messegeBoxDiv div.row.buttons {
+    padding-bottom:10px;
+}
+
+div#articleLanguagesList {
+    display: block;
+    width: 100%;
+    height: 36px;
+}
+
+div#articleLanguagesList ul{
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
+
+div#articleLanguagesList ul li {
+    display: inline;
+}
+
+div#articleLanguagesList ul li a {
+    padding: 10px;
+    background-color: #666;
+    color: #fff;
+}
+
+div#articleLanguagesList ul li a:hover {
+    padding: 10px;
+    background-color: #fff;
+    color: #666;
+    border: 1px solid #666;
+}
+
+div#articleLanguagesList ul li a.actual {
+    padding: 10px;
+    background-color: #fff;
+    color: #666;
+    border: 1px solid #666;
+}

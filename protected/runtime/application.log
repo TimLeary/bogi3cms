@@ -1,0 +1,154 @@
+2014/04/20 13:49:21 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'A rendszer nem találja a "images" action-t.' in /var/www/html/yii/framework/web/CController.php:483
+Stack trace:
+#0 /var/www/html/yii/framework/web/CController.php(270): CController->missingAction('images')
+#1 /var/www/html/yii/framework/web/CWebApplication.php(282): CController->run('images')
+#2 /var/www/html/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('site/images/bg_...')
+#3 /var/www/html/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#4 /var/www/html/bogi3cms/index.php(15): CApplication->run()
+#5 {main}
+REQUEST_URI=/bogi3cms/index.php/site/images/bg_test.jpg
+HTTP_REFERER=http://localhost/bogi3cms/index.php/site/index?showChilds=1
+---
+2014/04/20 13:50:52 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'A rendszer nem találja a "images" action-t.' in /var/www/html/yii/framework/web/CController.php:483
+Stack trace:
+#0 /var/www/html/yii/framework/web/CController.php(270): CController->missingAction('images')
+#1 /var/www/html/yii/framework/web/CWebApplication.php(282): CController->run('images')
+#2 /var/www/html/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('site/images/bg_...')
+#3 /var/www/html/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#4 /var/www/html/bogi3cms/index.php(15): CApplication->run()
+#5 {main}
+REQUEST_URI=/bogi3cms/index.php/site/images/bg_test.jpg
+HTTP_REFERER=http://localhost/bogi3cms/index.php/site/index?showChilds=1
+---
+2014/04/20 13:50:53 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'A rendszer nem találja a "undefined" action-t.' in /var/www/html/yii/framework/web/CController.php:483
+Stack trace:
+#0 /var/www/html/yii/framework/web/CController.php(270): CController->missingAction('undefined')
+#1 /var/www/html/yii/framework/web/CWebApplication.php(282): CController->run('undefined')
+#2 /var/www/html/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('site/undefined')
+#3 /var/www/html/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#4 /var/www/html/bogi3cms/index.php(15): CApplication->run()
+#5 {main}
+REQUEST_URI=/bogi3cms/index.php/site/undefined
+HTTP_REFERER=http://localhost/bogi3cms/index.php/site/index?showChilds=1
+---
+2014/04/20 13:50:58 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'A rendszer nem találja a "images" action-t.' in /var/www/html/yii/framework/web/CController.php:483
+Stack trace:
+#0 /var/www/html/yii/framework/web/CController.php(270): CController->missingAction('images')
+#1 /var/www/html/yii/framework/web/CWebApplication.php(282): CController->run('images')
+#2 /var/www/html/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('site/images/bg_...')
+#3 /var/www/html/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#4 /var/www/html/bogi3cms/index.php(15): CApplication->run()
+#5 {main}
+REQUEST_URI=/bogi3cms/index.php/site/images/bg_test.jpg
+HTTP_REFERER=http://localhost/bogi3cms/index.php/site/index?showChilds=1
+---
+2014/04/20 13:51:00 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'A rendszer nem találja a "undefined" action-t.' in /var/www/html/yii/framework/web/CController.php:483
+Stack trace:
+#0 /var/www/html/yii/framework/web/CController.php(270): CController->missingAction('undefined')
+#1 /var/www/html/yii/framework/web/CWebApplication.php(282): CController->run('undefined')
+#2 /var/www/html/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('site/undefined')
+#3 /var/www/html/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#4 /var/www/html/bogi3cms/index.php(15): CApplication->run()
+#5 {main}
+REQUEST_URI=/bogi3cms/index.php/site/undefined
+HTTP_REFERER=http://localhost/bogi3cms/index.php/site/index?showChilds=1
+---
+2014/04/20 13:51:05 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'A rendszer nem találja a "images" action-t.' in /var/www/html/yii/framework/web/CController.php:483
+Stack trace:
+#0 /var/www/html/yii/framework/web/CController.php(270): CController->missingAction('images')
+#1 /var/www/html/yii/framework/web/CWebApplication.php(282): CController->run('images')
+#2 /var/www/html/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('site/images/bg_...')
+#3 /var/www/html/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#4 /var/www/html/bogi3cms/index.php(15): CApplication->run()
+#5 {main}
+REQUEST_URI=/bogi3cms/index.php/site/images/bg_test.jpg
+HTTP_REFERER=http://localhost/bogi3cms/index.php/site/index?showChilds=1
+---
+2014/04/20 13:51:11 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'A rendszer nem találja a "undefined" action-t.' in /var/www/html/yii/framework/web/CController.php:483
+Stack trace:
+#0 /var/www/html/yii/framework/web/CController.php(270): CController->missingAction('undefined')
+#1 /var/www/html/yii/framework/web/CWebApplication.php(282): CController->run('undefined')
+#2 /var/www/html/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('site/undefined')
+#3 /var/www/html/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#4 /var/www/html/bogi3cms/index.php(15): CApplication->run()
+#5 {main}
+REQUEST_URI=/bogi3cms/index.php/site/undefined
+HTTP_REFERER=http://localhost/bogi3cms/index.php/site/index?showChilds=1
+---
+2014/04/20 13:51:18 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'A rendszer nem találja a "images" action-t.' in /var/www/html/yii/framework/web/CController.php:483
+Stack trace:
+#0 /var/www/html/yii/framework/web/CController.php(270): CController->missingAction('images')
+#1 /var/www/html/yii/framework/web/CWebApplication.php(282): CController->run('images')
+#2 /var/www/html/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('site/images/bg_...')
+#3 /var/www/html/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#4 /var/www/html/bogi3cms/index.php(15): CApplication->run()
+#5 {main}
+REQUEST_URI=/bogi3cms/index.php/site/images/bg_test.jpg
+HTTP_REFERER=http://localhost/bogi3cms/index.php/site/index?showChilds=1
+---
+2014/04/20 17:34:55 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'A rendszer nem találja a "images" action-t.' in /var/www/html/yii/framework/web/CController.php:483
+Stack trace:
+#0 /var/www/html/yii/framework/web/CController.php(270): CController->missingAction('images')
+#1 /var/www/html/yii/framework/web/CWebApplication.php(282): CController->run('images')
+#2 /var/www/html/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('site/images/bg_...')
+#3 /var/www/html/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#4 /var/www/html/bogi3cms/index.php(15): CApplication->run()
+#5 {main}
+REQUEST_URI=/bogi3cms/index.php/site/images/bg_test.jpg
+HTTP_REFERER=http://localhost/bogi3cms/index.php/site/index?showChilds=1
+---
+2014/04/20 17:35:00 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'A rendszer nem találja a "images" action-t.' in /var/www/html/yii/framework/web/CController.php:483
+Stack trace:
+#0 /var/www/html/yii/framework/web/CController.php(270): CController->missingAction('images')
+#1 /var/www/html/yii/framework/web/CWebApplication.php(282): CController->run('images')
+#2 /var/www/html/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('site/images/bg_...')
+#3 /var/www/html/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#4 /var/www/html/bogi3cms/index.php(15): CApplication->run()
+#5 {main}
+REQUEST_URI=/bogi3cms/index.php/site/images/bg_test.jpg
+HTTP_REFERER=http://localhost/bogi3cms/index.php/site/index?showItem=4
+---
+2014/04/20 17:35:04 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'A rendszer nem találja a "images" action-t.' in /var/www/html/yii/framework/web/CController.php:483
+Stack trace:
+#0 /var/www/html/yii/framework/web/CController.php(270): CController->missingAction('images')
+#1 /var/www/html/yii/framework/web/CWebApplication.php(282): CController->run('images')
+#2 /var/www/html/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('site/images/bg_...')
+#3 /var/www/html/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#4 /var/www/html/bogi3cms/index.php(15): CApplication->run()
+#5 {main}
+REQUEST_URI=/bogi3cms/index.php/site/images/bg_test.jpg
+HTTP_REFERER=http://localhost/bogi3cms/index.php/site/index?showItem=4
+---
+2014/04/20 17:35:06 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'A rendszer nem találja a "images" action-t.' in /var/www/html/yii/framework/web/CController.php:483
+Stack trace:
+#0 /var/www/html/yii/framework/web/CController.php(270): CController->missingAction('images')
+#1 /var/www/html/yii/framework/web/CWebApplication.php(282): CController->run('images')
+#2 /var/www/html/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('site/images/bg_...')
+#3 /var/www/html/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#4 /var/www/html/bogi3cms/index.php(15): CApplication->run()
+#5 {main}
+REQUEST_URI=/bogi3cms/index.php/site/images/bg_test.jpg
+HTTP_REFERER=http://localhost/bogi3cms/index.php/site/index?showChilds=1
+---
+2014/04/20 17:35:10 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'A rendszer nem találja a "images" action-t.' in /var/www/html/yii/framework/web/CController.php:483
+Stack trace:
+#0 /var/www/html/yii/framework/web/CController.php(270): CController->missingAction('images')
+#1 /var/www/html/yii/framework/web/CWebApplication.php(282): CController->run('images')
+#2 /var/www/html/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('site/images/bg_...')
+#3 /var/www/html/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#4 /var/www/html/bogi3cms/index.php(15): CApplication->run()
+#5 {main}
+REQUEST_URI=/bogi3cms/index.php/site/images/bg_test.jpg
+HTTP_REFERER=http://localhost/bogi3cms/index.php/site/index?showItem=4
+---
+2014/04/20 17:35:12 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'A rendszer nem találja a "images" action-t.' in /var/www/html/yii/framework/web/CController.php:483
+Stack trace:
+#0 /var/www/html/yii/framework/web/CController.php(270): CController->missingAction('images')
+#1 /var/www/html/yii/framework/web/CWebApplication.php(282): CController->run('images')
+#2 /var/www/html/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('site/images/bg_...')
+#3 /var/www/html/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#4 /var/www/html/bogi3cms/index.php(15): CApplication->run()
+#5 {main}
+REQUEST_URI=/bogi3cms/index.php/site/images/bg_test.jpg
+HTTP_REFERER=http://localhost/bogi3cms/index.php/site/index?showChilds=1
+---

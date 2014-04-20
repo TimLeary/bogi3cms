@@ -27,6 +27,8 @@
  */
 class ArticleLanguage extends CActiveRecord
 {
+        public $elderParents = array();
+        
 	/**
 	 * @return string the associated database table name
 	 */
@@ -176,12 +178,15 @@ class ArticleLanguage extends CActiveRecord
             return $articles->queryAll();
         }
         
-        public function getElderParents($articleId){
-            $article = Article::model()->findByPk($articleId);
+        public function getElderParents($articleId = null){
+            $article = ArticleLanguage::model()->findByPk($articleId);
+            
             if($article != null){
                 $tmpArray = array($article->article_id => $article->article_title);
                 array_unshift($this->elderParents, $tmpArray);
-                self::getElderParents($article->article_parent_id);
+                if($article->article_parent_id != null){
+                    self::getElderParents($article->article_parent_id);
+                }
                 return $this->elderParents;
             }
         }
@@ -215,7 +220,7 @@ class ArticleLanguage extends CActiveRecord
             return $articles->queryRow();
         }
         
-        public function getBasicMenu($parentId = null,$languageId = null){
+        public function getBasicMenu($parentId, $languageId = null){
             $returnArray = array();
             $menu = Yii::app()->db->createCommand()
                 ->select(array('article_id','article_seq','link','article_title','is_just_parent','is_just_link','article_status'))
@@ -228,9 +233,7 @@ class ArticleLanguage extends CActiveRecord
                 $menu->andWhere('article_parent_id = :articleParentId', array(':articleParentId' => $parentId));
             }
             
-            if($languageId == null){
-                $menu->andWhere('article_language_id = :languageId',array(':languageId'=>$languageId));
-            }
+            $menu->andWhere('article_language_id = :languageId',array(':languageId'=>$languageId));
             
             $menu->order(array('article_seq ASC'));
             
@@ -246,12 +249,13 @@ class ArticleLanguage extends CActiveRecord
             return $returnArray;
         }
         
-        public function getVeryFirstChild(){
+        public function getVeryFirstChild($languageId){
             $menu = Yii::app()->db->createCommand()
                 ->select(array('article_id','is_just_parent'))
                 ->from('article')
                 ->where('article_status = :articleStatus',array(':articleStatus' => 'active'))
                 ->andWhere('article_parent_id is null')
+                ->andWhere('article_language_id = :languageId',array(':languageId' => $languageId))
                 ->order(array('article_seq ASC'))
                 ->limit(1);
             return $menu->queryRow();
