@@ -67,16 +67,9 @@ class MediumController extends Controller
             $objectId = Yii::app()->request->getParam('objectId');
             $areaId = Yii::app()->request->getParam('areaId');
             
-            if($areaId == Yii::app()->params['giftArea']){
-                $giftElement = Gift::model()->find('gift_id = :objectId',array(':objectId' => $objectId));
-                if($giftElement == null){
-                    throw new Exception('Not valid object.');
-                } else {
-                    if(($giftElement->creator_id != Yii::app()->user->id)&&(Yii::app()->user->isAdmin() !== 1)){
-                        throw new Exception('Permission denied.');
-                    } elseif ((Yii::app()->user->isAdmin() !== 1)&&($giftElement->donation_status != Yii::app()->params['giftTempStatus'])) {
-                        throw new Exception('Permission denied.');
-                    }
+            if($areaId == Yii::app()->params['backgroundArea']){
+                if (Yii::app()->user->isAdmin() !== 1) {
+                    throw new Exception('Permission denied.');
                 }
             } else if($areaId == Yii::app()->params['articleArea']){
                 $wArticle = Article::model()->find('article_id = :objectId',array(':objectId' => $objectId));

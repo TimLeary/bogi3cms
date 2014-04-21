@@ -111,8 +111,18 @@
         });
 
         $.backstretch([
-            "<?= Yii::app()->baseUrl ?>/images/bg_test.jpg",
-            "http://dl.dropbox.com/u/515046/www/cheers.jpg"
+            <?php 
+            $i = 0;
+            $bgCount = count($this->bgList);
+            if($bgCount > 0):
+                foreach ($this->bgList as $bgItem):
+                    ++$i;
+            ?>
+                "<?= Yii::app()->baseUrl ?>/images/uploaded/original/<?= $bgItem ?>"<?php if($i != $bgCount):?>,<?php endif; ?>
+            <?php 
+                endforeach;
+            endif;
+            ?>
         ], {duration: 3000, fade: 750});
     });
 </script>

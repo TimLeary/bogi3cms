@@ -4,6 +4,8 @@ class SiteController extends Controller
 {
     
         public $menuItems;
+        public $bgList = array();
+
 
         /**
 	 * Declares class-based actions.
@@ -72,7 +74,18 @@ class SiteController extends Controller
             } else {
                 $wArticles = Article::model()->getArticleById($showItem);
             }
+            
+            $bgList = array();
+            $wBackground = MediaToObject::model()->getPicturesByObject(Yii::app()->params['backgroundArea'], Yii::app()->params['backgroundId']);
+            if($wBackground != null){
+                foreach ($wBackground as $bg){
+                    $bgList[] = $bg['filename'];
+                }
+            }
+            
             $this->menuItems = $this->generateMenuStr($menuItems);
+            $this->bgList = $bgList;
+            
             $this->render('index',array('menuItems' => $menuItems,'wArticles'=>$wArticles, 'model'=>$model));
 	}
         

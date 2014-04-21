@@ -25,3 +25,6 @@ ALTER TABLE `article`
     REFERENCES `article` (`article_id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION;
+
+INSERT INTO `area` (`area_id`, `area_name`) VALUES
+(2, 'background');

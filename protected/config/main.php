@@ -104,6 +104,8 @@ return array(
                 'smtpSecure' => 'tls',
                 'mailFrom' => 'Gazdagréti Összefogás Egyesület',
                 'articleArea' => 1,
+                'backgroundArea' => 2,
+                'backgroundId' => 1,
                 'thumbnailSizeMaxX' => 210,
                 'thumbnailSizeMaxY' => 210,
                 'mediumSizeMaxX' => 1000,

@@ -270,7 +270,7 @@ div#scaled-background{
 }
 
 div#background-shape {
-/*    background-image: url('../images/bg_logo_shape.png');*/
+    background-image: url('../images/bg_logo_shape.png');
     background-position: center center;
     background-repeat: no-repeat;
     min-height: 100%;
