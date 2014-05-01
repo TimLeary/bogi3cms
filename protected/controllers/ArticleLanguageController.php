@@ -32,7 +32,7 @@ class ArticleLanguageController extends Controller
                         'expression' => 'Yii::app()->user->isGuest() === 0',
                 ),
                 array('allow', // allow admin user to perform 'admin' and 'delete' actions
-                        'actions'=>array('index','create','update','changeSort','imageUpload','fileUpload'),
+                        'actions'=>array('index','create','update','changeSort','imageUpload','fileUpload','delete'),
                         'expression' => 'Yii::app()->user->isAdmin() === 1',
                 ),
                 array('deny',  // deny all users
@@ -136,6 +136,47 @@ class ArticleLanguageController extends Controller
             ));
 	}
         
+        /**
+	 * Deletes a particular model.
+	 * If deletion is successful, the browser will be redirected to the 'admin' page.
+	 * @param integer $id the ID of the model to be deleted
+	 */
+	public function actionDelete($id){
+            $model = $this->loadModel($id);
+            
+            $brothers = ArticleLanguage::model()->getARArticlesByParentId($model->article_parent_id);
+            
+            if(count($brothers) <= 1){
+                if($model->article_parent_id != null){
+                    $parent = ArticleLanguage::model()->findByPk($model->article_parent_id);
+                    $parent->is_just_parent = null;
+                    $parent->save();
+                }
+            } else {
+                $i = 0;
+                foreach ($brothers as $brother){
+                    if($brother->article_id != $id){
+                        $brother->article_seq = $i;
+                        $brother->save();
+                        ++$i;
+                    }
+                }
+            }
+            
+            $childs = ArticleLanguage::model()->getARArticlesByParentId($id);
+            if(count($childs) <= 1){
+                foreach ($childs as $child){
+                    $child->delete();
+                }
+            }
+            
+            $model->delete();
+
+            // if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
+            if(!isset($_GET['ajax']))
+                    $this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('index'));
+	}
+        
         public function actionChangeSort(){
             $parentId = Yii::app()->request->getParam('parentId',null);
             $childs = ArticleLanguage::model()->getARArticlesByParentId($parentId);
@@ -223,8 +264,9 @@ class ArticleLanguageController extends Controller
         
         public function loadModel($id){
 		$model= ArticleLanguage::model()->findByPk($id);
-		if($model===null)
-			throw new CHttpException(404,'The requested page does not exist.');
+		if($model===null) {
+                    throw new CHttpException(404,'The requested page does not exist.');
+                }
 		return $model;
 	}
         // Uncomment the following methods and override them if needed

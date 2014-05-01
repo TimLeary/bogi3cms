@@ -342,8 +342,8 @@ div.menuListItem {
     background-color: transparent;
 }
 
-div.menuListItem:hover {
-	color:#FFF;
+div.menuListItem:hover, .sel {
+	color:#ffffff !important;
 	/*http://www.colorzilla.com/gradient-editor/#7aa63f+0,5b822f+100;Custom*/	
 	background: #7aa63f; /* Old browsers */
 	/* IE9 SVG, needs conditional override of 'filter' to 'none' */

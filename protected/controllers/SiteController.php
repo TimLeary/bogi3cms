@@ -5,6 +5,7 @@ class SiteController extends Controller
     
         public $menuItems;
         public $bgList = array();
+        public $siteRequestArray = array();
 
 
         /**
@@ -59,7 +60,7 @@ class SiteController extends Controller
 
             $showChilds = Yii::app()->request->getParam('showChilds',null);
             $showItem = Yii::app()->request->getParam('showItem',null);
-
+            
             if(($showChilds == null)AND($showItem == null)){
                 $firstChild = ArticleLanguage::model()->getVeryFirstChild($languageId);
                 if($firstChild['is_just_parent'] == 1){
@@ -68,7 +69,9 @@ class SiteController extends Controller
                     $showItem = $firstChild['article_id'];
                 }
             }
-
+            
+            $this->siteRequestArray = array('showChilds' => $showChilds,'showItem'=>$showItem, 'language' => $language);
+            
             if($showChilds != null){
                 $wArticles = Article::model()->getArticlesByParentId($showChilds);
             } else {
@@ -144,12 +147,21 @@ class SiteController extends Controller
                     $returnStr .= '</li>';
                 } else {
                     $divStr = "";
+                    $sel = "";
                     if($item['is_just_parent']==1){
-                        $divStr .= "<div href=\"".Yii::app()->createUrl('site/index',array('showChilds'=>$item['article_id']))."\" class=\"menuListItem".$addDivClass."\">";
+                        if($this->siteRequestArray['showChilds']==$item['article_id']){
+                            $sel=" sel";
+                        }
+                        
+                        $divStr .= "<div href=\"".Yii::app()->createUrl('site/index',array('showChilds'=>$item['article_id']))."\" class=\"menuListItem".$addDivClass.$sel."\">";
                     }elseif($item['is_just_link'] == 1) {
                         $divStr .= "<div href=\"".$item['link']."\" class=\"menuListItem".$addDivClass."\">";
                     } else {
-                        $divStr .= "<div href=\"".Yii::app()->createUrl('site/index',array('showItem'=>$item['article_id']))."\" class=\"menuListItem".$addDivClass."\">";
+                        if($this->siteRequestArray['showItem']==$item['article_id']){
+                            $sel=" sel";
+                        }
+                        
+                        $divStr .= "<div href=\"".Yii::app()->createUrl('site/index',array('showItem'=>$item['article_id']))."\" class=\"menuListItem".$addDivClass.$sel."\">";
                     }
                     
                     $divStr .= $item['article_title'];

@@ -123,7 +123,7 @@
                 endforeach;
             endif;
             ?>
-        ], {duration: 3000, fade: 750});
+        ], {duration: 10000, fade: 750});
     });
 </script>
 </body>
