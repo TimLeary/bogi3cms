@@ -6,8 +6,11 @@ if($wArticles != null):
     ?>
     <div id="showArticle">
         <?php
+		$ind = 0;
+		
         foreach ($wArticles as $wArticle):
             $pictures = MediaToObject::model()->getPicturesByObject(Yii::app()->params['articleArea'], $wArticle['article_id']);
+			$ind++;
         ?>
         <div class="articleView">
 			<div class="articleTitle">
@@ -21,6 +24,9 @@ if($wArticles != null):
 				<?php endif; ?>
 				<div class="articleContent"><?=$wArticle['article_text']?></div>
 			</div>
+			<?php if($ind > 0): ?>
+				<div class="separator"></div>
+			<?php endif; ?>
         </div>
 		<div class="clear"></div>
         <?php 
@@ -52,7 +58,7 @@ endif;
 ?>
 <div id="messegeBoxDiv">
 <?php
-    $this->renderPartial('contact',array('model'=>$model));
+    //$this->renderPartial('contact',array('model'=>$model));
 ?>
 </div>
 <script type="text/javascript">

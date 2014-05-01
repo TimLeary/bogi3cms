@@ -41,6 +41,10 @@ li {
     padding: 20px;
 }
 
+.contentContainer {
+	min-height: 600px;
+}
+
 #sidebar
 {
 	padding: 20px 20px 20px 0;
@@ -92,6 +96,17 @@ li {
 	color: #6399cd;
 	background-color:#EFF4FA;
 	text-decoration:none;
+}
+
+#showArticle {
+	margin: 20px;
+	min-height: 100%;
+	display: block;
+}
+
+#backstretch {
+	min-height: 100%;
+	display: inline;
 }
 
 div.flash-error, div.flash-notice, div.flash-success

@@ -86,7 +86,7 @@
                             </ul>
                         -->
                 </div>
-            <div class="span-18 textured top-shift last">
+            <div class="span-18 textured top-shift last contentContainer">
                 <?php echo $content; ?>
             </div>
             <div class="span-5 last"></div>
