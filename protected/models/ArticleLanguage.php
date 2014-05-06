@@ -191,6 +191,19 @@ class ArticleLanguage extends CActiveRecord
             }
         }
         
+        public function getElderParentsId($articleId = null){
+            $article = ArticleLanguage::model()->findByPk($articleId);
+            
+            if($article != null){
+                $tmpArray = $article->article_id;
+                array_unshift($this->elderParents, $tmpArray);
+                if($article->article_parent_id != null){
+                    self::getElderParentsId($article->article_parent_id);
+                }
+                return $this->elderParents;
+            }
+        }
+        
         public function getARArticlesByParentId($parentId = null, $articleStatus = 'active'){
             $criteria = new CDbCriteria();
             $criteria->alias = 'a';

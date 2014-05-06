@@ -1,0 +1,33 @@
+2014/05/06 21:13:56 [error] [php] Undefined variable: articleId (/var/www/html/bogi3cms/protected/controllers/SiteController.php:79)
+Stack trace:
+#0 /var/www/html/yii/framework/web/CController.php(286): SiteController->runAction()
+#1 /var/www/html/yii/framework/web/CController.php(265): SiteController->runActionWithFilters()
+#2 /var/www/html/yii/framework/web/CWebApplication.php(282): SiteController->run()
+#3 /var/www/html/yii/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#4 /var/www/html/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#5 /var/www/html/bogi3cms/index.php(15): CWebApplication->run()
+REQUEST_URI=/bogi3cms/
+in /var/www/html/bogi3cms/protected/controllers/SiteController.php (79)
+in /var/www/html/bogi3cms/index.php (15)
+2014/05/06 21:13:56 [error] [php] Undefined variable: articleId (/var/www/html/bogi3cms/protected/controllers/SiteController.php:79)
+Stack trace:
+#0 /var/www/html/yii/framework/web/CController.php(286): SiteController->runAction()
+#1 /var/www/html/yii/framework/web/CController.php(265): SiteController->runActionWithFilters()
+#2 /var/www/html/yii/framework/web/CWebApplication.php(282): SiteController->run()
+#3 /var/www/html/yii/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#4 /var/www/html/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#5 /var/www/html/bogi3cms/index.php(15): CWebApplication->run()
+REQUEST_URI=/bogi3cms/
+in /var/www/html/bogi3cms/protected/controllers/SiteController.php (79)
+in /var/www/html/bogi3cms/index.php (15)
+2014/05/06 21:14:27 [error] [php] Undefined variable: articleId (/var/www/html/bogi3cms/protected/controllers/SiteController.php:80)
+Stack trace:
+#0 /var/www/html/yii/framework/web/CController.php(286): SiteController->runAction()
+#1 /var/www/html/yii/framework/web/CController.php(265): SiteController->runActionWithFilters()
+#2 /var/www/html/yii/framework/web/CWebApplication.php(282): SiteController->run()
+#3 /var/www/html/yii/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#4 /var/www/html/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#5 /var/www/html/bogi3cms/index.php(15): CWebApplication->run()
+REQUEST_URI=/bogi3cms/
+in /var/www/html/bogi3cms/protected/controllers/SiteController.php (80)
+in /var/www/html/bogi3cms/index.php (15)

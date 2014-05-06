@@ -39,7 +39,7 @@
 
                 </div>
             </div>
-            <div id="headInfo" class="span-8 last">
+            <div id="headInfo" class="span-8 last" style="display: none;">
                 <div id="headInfosHead">
                     <div>
                         <h3>MONKEY ESEMÉNYEK</h3>

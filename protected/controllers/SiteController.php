@@ -70,7 +70,16 @@ class SiteController extends Controller
                 }
             }
             
-            $this->siteRequestArray = array('showChilds' => $showChilds,'showItem'=>$showItem, 'language' => $language);
+            $actualId = null;
+            if($showChilds != null){
+                $actualId = $showChilds;
+            } else {
+                $actualId = $showItem;
+            }
+            
+            $actualParents = ArticleLanguage::model()->getElderParentsId($actualId);
+            
+            $this->siteRequestArray = array('actualId' => $actualId, 'language' => $language, 'parents' => $actualParents);
             
             if($showChilds != null){
                 $wArticles = Article::model()->getArticlesByParentId($showChilds);
@@ -137,7 +146,12 @@ class SiteController extends Controller
                 
                 
                 if((is_array($item['childs']))AND(count($item['childs'])>=1)AND($item['is_just_link'] == 1)){
-                    $divStr = '<div class="menuListItem subMenuBtn">';
+                    $par = "";
+                    if(in_array($item['article_id'], $this->siteRequestArray['parents'])){
+                        $par = " par";
+                    }
+                    
+                    $divStr = '<div class="menuListItem subMenuBtn'.$par.'">';
                     $divStr .= $item['article_title'];
                     $divStr .= '</div>';
                     
@@ -148,8 +162,10 @@ class SiteController extends Controller
                 } else {
                     $divStr = "";
                     $sel = "";
+                    $par = "";
+                    
                     if($item['is_just_parent']==1){
-                        if($this->siteRequestArray['showChilds']==$item['article_id']){
+                        if($this->siteRequestArray['actualId'] == $item['article_id']){
                             $sel=" sel";
                         }
                         
@@ -157,7 +173,7 @@ class SiteController extends Controller
                     }elseif($item['is_just_link'] == 1) {
                         $divStr .= "<div href=\"".$item['link']."\" class=\"menuListItem".$addDivClass."\">";
                     } else {
-                        if($this->siteRequestArray['showItem']==$item['article_id']){
+                        if($this->siteRequestArray['actualId']==$item['article_id']){
                             $sel=" sel";
                         }
                         
