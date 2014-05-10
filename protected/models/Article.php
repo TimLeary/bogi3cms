@@ -123,6 +123,16 @@ class Article extends CActiveRecord
 		));
 	}
         
+        
+        public function getMetaById($articleId){
+            $articles = Yii::app()->db->createCommand()
+                ->select(array('article_desc','article_keywords','article_title'))
+                ->from('article a')
+                ->where('a.article_id = :articleId', array(':articleId' => $articleId));
+            
+            return $articles->queryRow();
+        }
+
         public function getArticlesByParentId($parentId = null, $articleStatus = 'active', $languageId = null){
             $articles = Yii::app()->db->createCommand()
                 ->select(array('*'))

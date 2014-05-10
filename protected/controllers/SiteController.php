@@ -6,7 +6,9 @@ class SiteController extends Controller
         public $menuItems;
         public $bgList = array();
         public $siteRequestArray = array();
-
+        public $title;
+        public $desc;
+        public $keywords;
 
         /**
 	 * Declares class-based actions.
@@ -82,10 +84,15 @@ class SiteController extends Controller
             $this->siteRequestArray = array('actualId' => $actualId, 'language' => $language, 'parents' => $actualParents);
             
             if($showChilds != null){
-                $wArticles = Article::model()->getArticlesByParentId($showChilds);
+                $wArticles = ArticleLanguage::model()->getArticlesByParentId($showChilds);
             } else {
-                $wArticles = Article::model()->getArticleById($showItem);
+                $wArticles = ArticleLanguage::model()->getArticleById($showItem);
             }
+            
+            $wMetas = ArticleLanguage::model()->getMetaById($actualId);
+            $this->title = $wMetas['article_title'];
+            $this->desc = $wMetas['article_desc'];
+            $this->keywords = $wMetas['article_keywords'];
             
             $bgList = array();
             $wBackground = MediaToObject::model()->getPicturesByObject(Yii::app()->params['backgroundArea'], Yii::app()->params['backgroundId']);

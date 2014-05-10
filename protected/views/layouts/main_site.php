@@ -4,7 +4,9 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<meta name="language" content="en" />
-
+        <meta name="description" content="<?= $this->desc ?>" />
+        <meta name="keywords" content="<?= $this->keywords ?>" />
+        <meta name="robots" content="all" />
 	<!-- blueprint CSS framework -->
 	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/screen.css" media="screen, projection" />
 	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/print.css" media="print" />
@@ -28,7 +30,7 @@
             $cs->registerScriptFile(Yii::app()->baseUrl.'/js/jquery.backstretch.min.js');
         ?>
         
-	<title><?php echo CHtml::encode($this->pageTitle); ?></title>
+	<title><?php echo CHtml::encode($this->title.' - '.$this->pageTitle); ?></title>
 </head>
 <body>
 <div id="backstretch">
@@ -97,6 +99,8 @@
 <div class="clear"></div>
 <script type="text/javascript">
     $(function(){
+		$('.par').next().toggle();
+	
         $('.subMenuBtn').bind( "click", function(e) {
             var elem = $(this);				
             elem.next().toggle();
